@@ -276,7 +276,7 @@ def create(nodelist):
             nodelist.pop(0)
     return nodelist
 
-# 遍历二叉树创建编码, 注意当字符串只有一种字符时，返回的cdict是None,原因参见creat()函数的while循环条件
+# 遍历二叉树创建编码
 def setCode(root, cdict, code=''):
     if root is None:
         return
