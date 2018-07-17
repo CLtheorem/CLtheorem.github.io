@@ -20,5 +20,50 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Cryptography</title>
+      <link>/categories/cryptography/</link>
+      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
+      
+      <guid>/categories/cryptography/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ctf</title>
+      <link>/categories/ctf/</link>
+      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
+      
+      <guid>/categories/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>/categories/python/</link>
+      <pubDate>Tue, 24 Apr 2018 23:10:01 +0800</pubDate>
+      
+      <guid>/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reverse</title>
+      <link>/categories/reverse/</link>
+      <pubDate>Sun, 06 May 2018 09:42:10 +0800</pubDate>
+      
+      <guid>/categories/reverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sql Injection</title>
+      <link>/categories/sql-injection/</link>
+      <pubDate>Wed, 25 Apr 2018 13:58:41 +0800</pubDate>
+      
+      <guid>/categories/sql-injection/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/07/cbc-byte-flipping-attack/</loc>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/05/gdb%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2018-05-06T09:42:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/04/basic-sql-injection-1/</loc>
+    <lastmod>2018-04-25T13:58:41+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/04/huffmancode/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
   </url>
@@ -20,7 +35,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-04-24T23:10:01+08:00</lastmod>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -31,8 +46,32 @@
   </url>
   
   <url>
+    <loc>/tags/cbc-byte-flipping-attack/</loc>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/code/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/cryptography/</loc>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/ctf/</loc>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/gdb/</loc>
+    <lastmod>2018-05-06T09:42:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -43,14 +82,38 @@
   </url>
   
   <url>
+    <loc>/tags/mysql/</loc>
+    <lastmod>2018-04-25T13:58:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/python/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>/categories/reverse/</loc>
+    <lastmod>2018-05-06T09:42:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/sql-injection/</loc>
+    <lastmod>2018-04-25T13:58:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/</loc>
-    <lastmod>2018-04-24T23:10:01+08:00</lastmod>
+    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
     <priority>0</priority>
   </url>
   

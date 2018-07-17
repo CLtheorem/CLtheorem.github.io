@@ -72,8 +72,6 @@
 
     
     
-      <meta property="og:image" content="/post/images/huffman.jpg">
-    
     
 
     
@@ -125,6 +123,8 @@
         </a>
         <h4 class="sidebar-profile-name">CLtheorem</h4>
         
+          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，知之无央</h5>
+        
       </div>
     
     <ul class="sidebar-buttons">
@@ -169,6 +169,16 @@
     </a>
   </li>
 
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
 
     </ul>
     <ul class="sidebar-buttons">
@@ -193,13 +203,15 @@
 </nav>
 
       
-  <div class="post-header-cover
-              text-left
-              "
-       style="background-image:url('/post/images/huffman.jpg')"
-       data-behavior="4">
-    
-      <div class="post-header main-content-wrap text-left">
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
       HuffmanCode
@@ -219,23 +231,15 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="/categories/algorithm">algorithm</a>
+      <a class="category-link" href="/categories/algorithm">Algorithm</a>, 
+    
+      <a class="category-link" href="/categories/python">Python</a>
     
   
 
   </div>
 
 </div>
-    
-  </div>
-
-
-      <div id="main" data-behavior="4"
-        class="hasCover
-               hasCoverMetaIn
-               ">
-        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
-          
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
@@ -276,7 +280,7 @@ def create(nodelist):
             nodelist.pop(0)
     return nodelist
 
-# 遍历二叉树创建编码
+# 遍历二叉树创建编码hugo-tranquilpeak-theme
 def setCode(root, cdict, code=''):
     if root is None:
         return
@@ -333,7 +337,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/04/basic-sql-injection-1/" data-tooltip="Basic Sql Injection 1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -401,7 +405,7 @@ if __name__ == '__main__':
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/04/basic-sql-injection-1/" data-tooltip="Basic Sql Injection 1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -465,6 +469,8 @@ if __name__ == '__main__':
     
     <h4 id="about-card-name">CLtheorem</h4>
     
+      <div id="about-card-bio">自强不息，止于至善；敏而好学，知之无央</div>
+    
     
     
       <div id="about-card-location">
@@ -498,6 +504,67 @@ if __name__ == '__main__':
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="/2018/07/cbc-byte-flipping-attack/">
+                <h3 class="media-heading">CBC Byte Flipping Attack</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>CBC字节翻转攻击</p>
+
+<pre><code>知识点：密码分组链模式（CBC）、SQL注入
+</code></pre></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/05/gdb%E5%85%A5%E9%97%A8/">
+                <h3 class="media-heading">Gdb入门</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>GDB即GUN Debugger，是linux上的标准调试器，常配合gef、peda等插件来使用。</p>
+
+<pre><code>最近在“西普杯”在线教程陈云老师的课程中学习了一些逆向基础知识，就gdb入门做一篇笔记。
+知识点：gdb简单指令、汇编基础
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/04/basic-sql-injection-1/">
+                <h3 class="media-heading">Basic Sql Injection 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>基础的sql注入知识
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="/2018/04/huffmancode/">
                 <h3 class="media-heading">HuffmanCode</h3>
               </a>
@@ -526,7 +593,7 @@ if __name__ == '__main__':
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         1 posts found
+         4 posts found
       </p>
     </div>
   </div>
@@ -534,7 +601,7 @@ if __name__ == '__main__':
     
   
     
-    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('/images/54547023_p10.png');"></div>
   
 
 
@@ -579,7 +646,7 @@ $(document).ready(function() {
             return;
           }
           var d = document, s = d.createElement('script');
-          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          var disqus_shortname = 'peak';
           s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
           s.setAttribute('data-timestamp', +new Date());

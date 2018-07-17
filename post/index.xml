@@ -6,10 +6,47 @@
     <description>Recent content in Posts on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Apr 2018 23:10:01 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 Jul 2018 10:05:20 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CBC Byte Flipping Attack</title>
+      <link>/2018/07/cbc-byte-flipping-attack/</link>
+      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
+      
+      <guid>/2018/07/cbc-byte-flipping-attack/</guid>
+      <description>&lt;p&gt;CBC字节翻转攻击&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;知识点：密码分组链模式（CBC）、SQL注入
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gdb入门</title>
+      <link>/2018/05/gdb%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sun, 06 May 2018 09:42:10 +0800</pubDate>
+      
+      <guid>/2018/05/gdb%E5%85%A5%E9%97%A8/</guid>
+      <description>&lt;p&gt;GDB即GUN Debugger，是linux上的标准调试器，常配合gef、peda等插件来使用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;最近在“西普杯”在线教程陈云老师的课程中学习了一些逆向基础知识，就gdb入门做一篇笔记。
+知识点：gdb简单指令、汇编基础
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Basic Sql Injection 1</title>
+      <link>/2018/04/basic-sql-injection-1/</link>
+      <pubDate>Wed, 25 Apr 2018 13:58:41 +0800</pubDate>
+      
+      <guid>/2018/04/basic-sql-injection-1/</guid>
+      <description>&lt;p&gt;基础的sql注入知识
+    &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>HuffmanCode</title>

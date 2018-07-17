@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ctf on CLtheorem</title>
+    <link>/categories/ctf/</link>
+    <description>Recent content in Ctf on CLtheorem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Jul 2018 10:05:20 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/ctf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CBC Byte Flipping Attack</title>
+      <link>/2018/07/cbc-byte-flipping-attack/</link>
+      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
+      
+      <guid>/2018/07/cbc-byte-flipping-attack/</guid>
+      <description>&lt;p&gt;CBC字节翻转攻击&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;知识点：密码分组链模式（CBC）、SQL注入
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

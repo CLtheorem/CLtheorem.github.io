@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on CLtheorem</title>
+    <link>/categories/python/</link>
+    <description>Recent content in Python on CLtheorem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Apr 2018 23:10:01 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HuffmanCode</title>
+      <link>/2018/04/huffmancode/</link>
+      <pubDate>Tue, 24 Apr 2018 23:10:01 +0800</pubDate>
+      
+      <guid>/2018/04/huffmancode/</guid>
+      <description>&lt;p&gt;赫夫曼编码&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
+
+知识点：最优二叉树（赫夫曼树）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
