@@ -285,23 +285,23 @@ peda:https://github.com/longld/peda
 <p>接下来进入正题：
 <!----></p>
 
-<pre><code>▲编译写好的c文件
+<pre><code>编译写好的c文件
 root@kali:~/Documents/test_code# gcc -o test4 test4.c
 
-▲开始用gdb调试文件
+开始用gdb调试文件
 root@kali:~/Documents/test_code# gdb test4
 
 这里使用gdb filename 的方式打开待调试文件，也可以进入gdb后使用file filename 的方式选择待调试文件
 
-▲下断点
+下断点
 让程序在指定点处停下，以便调试。
-gef➤  b main
+gef&gt; b main
 Breakpoint 1 at 0x618
 
 其中指令 b 即 breakpoint 的缩写，与使用 breakpoint 效果一样；main 是指程序的main函数。即在main函数
 处下断点。下断点的方式有多种，使用起来也非常灵活。
 
-▲运行程序
+运行程序
 </code></pre>
 
 <p>Loading……</p>
@@ -547,7 +547,7 @@ Breakpoint 1 at 0x618
                   Apr 4, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>基础的sql注入知识
+              <div class="media-content hide-xs font-merryweather"><p>基础的MySQL(MariaDB)数据库注入知识（一）
     </p></div>
             </div>
             <div style="clear:both;"></div>
