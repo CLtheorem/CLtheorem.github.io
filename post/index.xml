@@ -6,10 +6,20 @@
     <description>Recent content in Posts on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Jul 2018 10:05:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 17:23:43 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Basic XSS</title>
+      <link>/2018/08/basic-xss/</link>
+      <pubDate>Thu, 23 Aug 2018 17:23:43 +0800</pubDate>
+      
+      <guid>/2018/08/basic-xss/</guid>
+      <description>&lt;p&gt;XSS Challenges Stage(&lt;a href=&#34;http://xss-quiz.int21h.jp&#34;&gt;http://xss-quiz.int21h.jp&lt;/a&gt;) 上的练习题解。
+    &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>CBC Byte Flipping Attack</title>

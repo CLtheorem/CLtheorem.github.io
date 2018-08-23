@@ -105,7 +105,7 @@
         </a>
         <h4 class="sidebar-profile-name">CLtheorem</h4>
         
-          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，知之无央</h5>
+          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，致知无央</h5>
         
       </div>
     
@@ -258,7 +258,7 @@
     当输入的数字大于表的总字段数时，就会产生错误，基于此，注入时便可借助order by加数字，通过二分法快速确定
     表中有多少列。
 (4)group_concat()
-    把指定字段的全部内容统计在一行中作为一个单元输出，如下例子，获取security库中所有表和表中字段：
+    把指定字段的全部内容统计在一行中作为一个单元输出，如下例子，获取security库中所有表和表中字段:
     MariaDB [dblab]&gt; select table_name,group_concat(column_name) from information_schema.columns where table_schema='security' group by table_name;
     +------------+-------------------------------+
     | table_name | group_concat(column_name)     |
@@ -290,11 +290,7 @@
     看名字，flag很有可能就在k0y字段，实际也确实如此。
     id =-1 union select 1,k0y from thiskey 
     即可得到flag
-</code></pre>
-
-<p>0x01 字符串函数</p>
-
-<pre><code>(1)字符串截取函数：
+(5)字符串截取函数：
     left(), right(), substring(), substring_index()；还有mid(), substr()，在MySQL中这两个等价于substring()函数。
     用法：substring(string,start,[length]) 如截取库名的前三个字符:
     MariaDB [dblab]&gt; select substring(database(),1,3);
@@ -304,7 +300,8 @@
     | dbl                       |
     +---------------------------+
     用法：left(string, length), right(string. length) 分别是从左端截取和从右端截取
-(2)length()
+    也可以用 select substring(database() from 1 for 3); 替代上述查询语句。
+(6)length()
     获取字符串长度
     MariaDB [dblab]&gt; select length(database());
     +--------------------+
@@ -312,6 +309,34 @@
     +--------------------+
     |                  5 |
     +--------------------+
+(7)if()函数
+    语法: if(condition，true_expr, false_expr) 如果条件式condition为真，则返回true_expr，反之false_expr
+    MariaDB [dblab]&gt; select if(mid(database(),1,2)='db', 1, 0);
+    +------------------------------------+
+    | if(mid(database(),1,2)='db', 1, 0) |
+    +------------------------------------+
+    |                                  1 |
+    +------------------------------------+
+(8)case when
+    语法：case when condition1 then expr1 
+               when condition2 then expr2
+               ...
+               else expr 
+               end
+    从上到下，第一个条件为真的表达式作为返回值。
+
+(9)rpad()
+    语法：rpad(str, len, padstr) 用padstr对str进行右填充使字符串长度变为len，然后返回填充后的字符串，
+    若str长度大于len，则截取str前len个字符返回。
+    mysql&gt; select rpad(username,10,0) from users limit 3;
+    +---------------------+
+    | rpad(username,10,0) |
+    +---------------------+
+    | Dumb000000          |
+    | Angelina00          |
+    | Dummy00000          |
+    +---------------------+
+    与rpad()相对应的是左填充函数lpad()。
 </code></pre>
 
 <p>Loading……</p>
@@ -471,7 +496,7 @@
     
     <h4 id="about-card-name">CLtheorem</h4>
     
-      <div id="about-card-bio">自强不息，止于至善；敏而好学，知之无央</div>
+      <div id="about-card-bio">自强不息，止于至善；敏而好学，致知无央</div>
     
     
     
@@ -502,6 +527,24 @@
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/basic-xss/">
+                <h3 class="media-heading">Basic XSS</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>XSS Challenges Stage(<a href="http://xss-quiz.int21h.jp">http://xss-quiz.int21h.jp</a>) 上的练习题解。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -595,7 +638,7 @@
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         4 posts found
+         5 posts found
       </p>
     </div>
   </div>

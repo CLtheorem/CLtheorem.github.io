@@ -65,5 +65,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Xss</title>
+      <link>/categories/xss/</link>
+      <pubDate>Thu, 23 Aug 2018 17:23:43 +0800</pubDate>
+      
+      <guid>/categories/xss/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

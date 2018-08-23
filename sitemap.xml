@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/08/basic-xss/</loc>
+    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/07/cbc-byte-flipping-attack/</loc>
     <lastmod>2018-07-17T10:05:20+08:00</lastmod>
   </url>
@@ -35,7 +40,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,7 +94,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -114,6 +119,12 @@
   <url>
     <loc>/tags/</loc>
     <lastmod>2018-07-17T10:05:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/xss/</loc>
+    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
     <priority>0</priority>
   </url>
   

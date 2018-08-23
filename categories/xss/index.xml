@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xss on CLtheorem</title>
+    <link>/categories/xss/</link>
+    <description>Recent content in Xss on CLtheorem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Aug 2018 17:23:43 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/xss/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Basic XSS</title>
+      <link>/2018/08/basic-xss/</link>
+      <pubDate>Thu, 23 Aug 2018 17:23:43 +0800</pubDate>
+      
+      <guid>/2018/08/basic-xss/</guid>
+      <description>&lt;p&gt;XSS Challenges Stage(&lt;a href=&#34;http://xss-quiz.int21h.jp&#34;&gt;http://xss-quiz.int21h.jp&lt;/a&gt;) 上的练习题解。
+    &lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
