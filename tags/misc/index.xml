@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ctf on CLtheorem</title>
-    <link>/categories/ctf/</link>
-    <description>Recent content in Ctf on CLtheorem</description>
+    <title>Misc on CLtheorem</title>
+    <link>/tags/misc/</link>
+    <description>Recent content in Misc on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 27 Sep 2018 21:20:36 +0800</lastBuildDate>
     
-	<atom:link href="/categories/ctf/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/misc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,20 +19,6 @@
       <guid>/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/</guid>
       <description>&lt;p&gt;这是IceCTF2018中的两道misc，感觉用Photoshop处理起来很好玩。
     &lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>CBC Byte Flipping Attack</title>
-      <link>/2018/07/cbc-byte-flipping-attack/</link>
-      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
-      
-      <guid>/2018/07/cbc-byte-flipping-attack/</guid>
-      <description>&lt;p&gt;CBC字节翻转攻击&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;知识点：密码分组链模式（CBC）、SQL注入
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>
