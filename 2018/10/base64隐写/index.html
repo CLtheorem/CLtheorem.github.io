@@ -30,18 +30,15 @@
     
 
     
-    <meta name="description" content="你真的理解base64吗。
-    ">
-    <meta property="og:description" content="你真的理解base64吗。
-    ">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Base64隐写">
     <meta property="og:url" content="/2018/10/base64%E9%9A%90%E5%86%99/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="你真的理解base64吗。
-    ">
+    <meta name="twitter:description" content="">
     
     
 
@@ -75,6 +72,7 @@
   </head>
 
   <body>
+
     <div id="blog">
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
@@ -222,11 +220,18 @@
 </div>
           
           <div class="post-content markdown" itemprop="articleBody">
-            <div class="main-content-wrap">
-              <p>你真的理解base64吗。
-    </p>
+            <div class="main-content-wrap">	
+              <p>
+<div position="fixed">
+    <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#0x00-base64编解码原理">0x00 base64编解码原理</a></li>
+<li><a href="#0x01-base64隐写">0x01 base64隐写</a></li>
+</ul>
+</nav>
+</div></p>
 
-<p>0x00 base64编解码原理</p>
+<h1 id="0x00-base64编解码原理">0x00 base64编解码原理</h1>
 
 <pre><code>    Base64是一种基于64个可打印字符来表示二进制数据的表示方法，将不可见字符可视化是其一大特点。64个可打印
 字符依次为A-Za-z0-9+/，可用6bit二进制数映射这64个字符，对应编码见下表
@@ -254,7 +259,7 @@
 单直观的例子就是QUJDRA==和QUJDRC==解码后都是ABCD。由此我们便可以将隐藏信息插入这些bit位中实现隐写。   
 </code></pre>
 
-<p>0x01 base64隐写</p>
+<h1 id="0x01-base64隐写">0x01 base64隐写</h1>
 
 <pre><code>    可以看出一串base64的编码最多也只有4bit的隐写空间，所以实现隐写往往需要大量编码串。隐写时把明文的每个
 字符用8位二进制数表示，由此将整个明文串转为bit串，按顺序填入base64编码串的可隐写位中即可实现隐写。
@@ -434,7 +439,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/flask/" data-tooltip="Flask">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -469,7 +474,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -502,7 +507,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--disabled">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/flask/" data-tooltip="Flask">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -537,7 +542,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
       
       <li class="post-action">
         
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
         
           <i class="fa fa-list"></i>
         </a>
@@ -601,6 +606,59 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/hitcon2018-lostkey/">
+                <h3 class="media-heading">Hitcon2018-Lostkey</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Hitcon2018中lost key的wp。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/rea/">
+                <h3 class="media-heading">rea</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/flask/">
+                <h3 class="media-heading">Flask</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>轻量级web开发框架。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
                 <h3 class="media-heading">Base64隐写</h3>
               </a>
@@ -609,8 +667,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
                   Oct 10, 2018
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"><p>你真的理解base64吗。
-    </p></div>
+              <div class="media-content hide-xs font-merryweather"></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -733,48 +790,6 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/2018/04/basic-sql-injection-1/">
-                <h3 class="media-heading">Basic Sql Injection 1</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>基础的MySQL(MariaDB)数据库注入知识（一）
-    </p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/2018/04/huffmancode/">
-                <h3 class="media-heading">HuffmanCode</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>赫夫曼编码</p>
-
-<pre><code>对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
-
-知识点：最优二叉树（赫夫曼树）
-</code></pre>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -782,7 +797,7 @@ with open(&#39;./encodeFile.txt&#39;, &#39;w&#39;)as f:
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         9 posts found
+         12 posts found
       </p>
     </div>
   </div>
