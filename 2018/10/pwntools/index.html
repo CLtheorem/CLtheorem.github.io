@@ -274,41 +274,15 @@ p.interactive()</code></pre>
   </table>
 </figure>
 
-<pre><code>0x01 ssh的使用
+<pre><code>0x01 用法积累
+
+ssh的使用
+    s=ssh(host=&quot;hostname&quot;,user=&quot;username&quot;,password=&quot;pass&quot;)  # 建立ssh链接
+    s.set_working_directory(&quot;/&quot;)  # 设置在目标主机上的工作目录
+    p = s.process(&quot;./vuln&quot;)  # 注意这里要使用s.process()来加载目标主机上的文件
+
+p.recvuntil(&quot;mesg&quot;)和p.sendline(&quot;reply&quot;)可以简写为p.sendlineafter(&quot;mesg&quot;, &quot;reply&quot;)
 </code></pre>
-
-<p>
-  
-    
-  
-  
-    
-  
-  
-  
-
-
-<figure class="highlight python language-python">
-  <figcaption>
-    
-      <span>pwntools_ssh.py</span>
-    
-  </figcaption>
-  <table>
-    <tbody>
-      <tr>
-        <td class="gutter">
-          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
-        </td>
-        <td class="code">
-          <pre class="code-highlight language-python"><code class="python">s=ssh(host=&#34;hostname&#34;,user=&#34;username&#34;,password=&#34;pass&#34;)  # 建立ssh链接
-s.set_working_directory(&#34;/&#34;)  # 设置在目标主机上的工作目录
-p = s.process(&#34;./vuln&#34;)  # 注意这里要使用s.process()来加载目标主机上的文件</code></pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</figure></p>
               
             </div>
           </div>
@@ -518,41 +492,6 @@ p = s.process(&#34;./vuln&#34;)  # 注意这里要使用s.process()来加载目�
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/2018/10/rea/">
-                <h3 class="media-heading">rea</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Oct 10, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/2018/10/flask/">
-                <h3 class="media-heading">Flask</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Oct 10, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>轻量级web开发框架。
-    </p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
               <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
                 <h3 class="media-heading">Base64隐写</h3>
               </a>
@@ -684,6 +623,48 @@ p = s.process(&#34;./vuln&#34;)  # 注意这里要使用s.process()来加载目�
             <hr>
           </div>
         
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/04/basic-sql-injection-1/">
+                <h3 class="media-heading">Basic Sql Injection 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>基础的MySQL(MariaDB)数据库注入知识（一）
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/04/huffmancode/">
+                <h3 class="media-heading">HuffmanCode</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>赫夫曼编码</p>
+
+<pre><code>对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
+
+知识点：最优二叉树（赫夫曼树）
+</code></pre>
+
+<p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
       </div>
     </div>
     <div class="modal-footer">
@@ -691,7 +672,7 @@ p = s.process(&#34;./vuln&#34;)  # 注意这里要使用s.process()来加载目�
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         12 posts found
+         10 posts found
       </p>
     </div>
   </div>
