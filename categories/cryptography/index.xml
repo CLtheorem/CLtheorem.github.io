@@ -21,19 +21,5 @@
     &lt;/p&gt;</description>
     </item>
     
-    <item>
-      <title>CBC Byte Flipping Attack</title>
-      <link>/2018/07/cbc-byte-flipping-attack/</link>
-      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
-      
-      <guid>/2018/07/cbc-byte-flipping-attack/</guid>
-      <description>&lt;p&gt;CBC字节翻转攻击&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;知识点：密码分组链模式（CBC）、SQL注入
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
   </channel>
 </rss>

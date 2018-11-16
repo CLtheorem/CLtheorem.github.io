@@ -6,19 +6,10 @@
     <description>Recent content in Tags on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Jul 2018 10:05:20 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Apr 2018 23:10:01 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Cbc Byte Flipping Attack</title>
-      <link>/tags/cbc-byte-flipping-attack/</link>
-      <pubDate>Tue, 17 Jul 2018 10:05:20 +0800</pubDate>
-      
-      <guid>/tags/cbc-byte-flipping-attack/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Code</title>
@@ -26,15 +17,6 @@
       <pubDate>Tue, 24 Apr 2018 23:10:01 +0800</pubDate>
       
       <guid>/tags/code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gdb</title>
-      <link>/tags/gdb/</link>
-      <pubDate>Sun, 06 May 2018 09:42:10 +0800</pubDate>
-      
-      <guid>/tags/gdb/</guid>
       <description></description>
     </item>
     
@@ -71,6 +53,15 @@
       <pubDate>Sun, 14 Oct 2018 23:33:19 +0800</pubDate>
       
       <guid>/tags/pwntools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regular Expression</title>
+      <link>/tags/regular-expression/</link>
+      <pubDate>Fri, 16 Nov 2018 10:09:23 +0800</pubDate>
+      
+      <guid>/tags/regular-expression/</guid>
       <description></description>
     </item>
     

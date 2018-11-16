@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Python</title>
+    <title>Regular_expression</title>
     <meta name="author" content="CLtheorem">
     <meta name="keywords" content="">
 
     <link rel="icon" href="/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/categories/python/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="">
+    <meta property="og:description" content="">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Python">
-    <meta property="og:url" content="/categories/python/">
+    <meta property="og:title" content="Regular_expression">
+    <meta property="og:url" content="/2018/11/regular_expression/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="">
     
     
 
@@ -70,8 +72,9 @@
   </head>
 
   <body>
+
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="/">CLtheorem</a>
@@ -91,7 +94,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -180,44 +183,26 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      Regular_expression
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/2018/04/huffmancode/">
-          HuffmanCode
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-04-24T23:10:01&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-11-16T10:09:23&#43;08:00">
         
-  四月 24, 2018
+  十一月 16, 2018
 
       </time>
     
@@ -226,38 +211,226 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="/categories/algorithm">Algorithm</a>, 
-    
-      <a class="category-link" href="/categories/python">Python</a>
+      <a class="category-link" href="/categories/notes">notes</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>赫夫曼编码</p>
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">	
+              <p></p>
 
-<pre><code>对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
-
-知识点：最优二叉树（赫夫曼树）
+<pre><code>常用正则表示式
 </code></pre>
 
-<p></p>
-      <p>
-        <a href="/2018/04/huffmancode/" class="postShorten-excerpt_link link">阅读全文</a>
+<table>
+<thead>
+<tr>
+<th align="center">正则字符</th>
+<th align="left">匹配对象</th>
+<th align="left">举例</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">.</td>
+<td align="left">匹配任意字符</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">\d</td>
+<td align="left">匹配一个数字</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">\w</td>
+<td align="left">匹配一个字母或数字或下划线</td>
+<td align="left"><strong>\w</strong>匹配的字母不止英文字母，<br>所以比[A-Za-z0-9_]的匹配范围更广</td>
+</tr>
+
+<tr>
+<td align="center">\W</td>
+<td align="left">\w的匹配范围取反</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">\s</td>
+<td align="left">匹配任意空白符，等价于[\t\n\f\v\r]</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">\S</td>
+<td align="left">匹配任意非空白符</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">[]</td>
+<td align="left">表示[]中所限定的范围内的任意一个字符</td>
+<td align="left"><strong>[A-Za-z0-9]</strong>匹配任意英文字母和数字</td>
+</tr>
+
+<tr>
+<td align="center">()</td>
+<td align="left">()中的内容将作为一个整体</td>
+<td align="left"><strong>([0-9][a-z][A-Z])</strong> 匹配一个长度为3的<br>字符串，其首字符为数字，中间字符为<br>小写英文字母，尾字符为大写英文字母</td>
+</tr>
+
+<tr>
+<td align="center">^</td>
+<td align="left">用于行匹配，限制行的开头</td>
+<td align="left"><strong>^\d</strong> 表示以数字开头</td>
+</tr>
+
+<tr>
+<td align="center">$</td>
+<td align="left">用于行匹配，限制行的结尾</td>
+<td align="left"><strong>\d$</strong> 表示以数字结束</td>
+</tr>
+
+<tr>
+<td align="center">*</td>
+<td align="left">表示任意数目的字符</td>
+<td align="left"><strong>.*</strong> 即通配</td>
+</tr>
+
+<tr>
+<td align="center">+</td>
+<td align="left">表示至少一个字符</td>
+<td align="left"><strong>\d+</strong> 表示至少一个数字</td>
+</tr>
+
+<tr>
+<td align="center">?</td>
+<td align="left">表示0或1个字符</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">{n}</td>
+<td align="left">表示n个字符</td>
+<td align="left"><strong>.{4}</strong> 表示长度为4的字符串</td>
+</tr>
+
+<tr>
+<td align="center">{n,m}</td>
+<td align="left">表示n-m个字符</td>
+<td align="left">null</td>
+</tr>
+
+<tr>
+<td align="center">A|B</td>
+<td align="left">匹配A或B</td>
+<td align="left"><strong>(\d|[a-z])+</strong> 匹配至少一个数字或小写英文字母</td>
+</tr>
+
+<tr>
+<td align="center">[^a-z]</td>
+<td align="left">负值匹配区间，即匹配除小写英文字母外的任意字符</td>
+<td align="left">再如<strong>[^\d]</strong>匹配除数字外的字符</td>
+</tr>
+
+<tr>
+<td align="center">\&lt;\&gt;</td>
+<td align="left">匹配文章中词的开始(\&lt;)和结尾(\&gt;)</td>
+<td align="left"><strong>\&lt;other\&gt;</strong>匹配单词other而不会匹配到<br>another中的other</td>
+</tr>
+
+<tr>
+<td align="center">\b</td>
+<td align="left">匹配单词边界</td>
+<td align="left"><strong>er\b</strong> 可以匹配other中的er，但不能匹配<br>there中的er；<strong>\b12</strong> 可以匹配123中的<br>12，但不会匹配3123中的12</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>正则表示中需要使用 \ 转义的字符有 \ | [ ] { } ( ) ? + . * ^ $
+</code></pre>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/regular-expression/">regular expression</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/hitcon2018-lostkey/" data-tooltip="Hitcon2018-Lostkey">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-      </p>
-    </div>
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
   </div>
-  
-</article>
+
 
             
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
             
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2018 CLtheorem. All Rights Reserved
@@ -265,6 +438,66 @@
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/hitcon2018-lostkey/" data-tooltip="Hitcon2018-Lostkey">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -518,6 +751,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/11\/regular_expression\/';
+          
+            this.page.identifier = '\/2018\/11\/regular_expression\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
