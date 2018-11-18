@@ -30,24 +30,6 @@
     </item>
     
     <item>
-      <title>Jarvisoj Writeup</title>
-      <link>/tags/jarvisoj-writeup/</link>
-      <pubDate>Fri, 28 Sep 2018 21:09:08 +0800</pubDate>
-      
-      <guid>/tags/jarvisoj-writeup/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Mysql</title>
-      <link>/tags/mysql/</link>
-      <pubDate>Wed, 25 Apr 2018 13:58:41 +0800</pubDate>
-      
-      <guid>/tags/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Pwntools</title>
       <link>/tags/pwntools/</link>
       <pubDate>Sun, 14 Oct 2018 23:33:19 +0800</pubDate>
@@ -71,6 +53,15 @@
       <pubDate>Mon, 05 Nov 2018 10:05:38 +0800</pubDate>
       
       <guid>/tags/rsa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sql Injection</title>
+      <link>/tags/sql-injection/</link>
+      <pubDate>Sun, 18 Nov 2018 17:00:04 +0800</pubDate>
+      
+      <guid>/tags/sql-injection/</guid>
       <description></description>
     </item>
     
