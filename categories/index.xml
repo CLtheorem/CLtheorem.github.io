@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Features</title>
+      <link>/categories/features/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/features/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Misc</title>
       <link>/categories/misc/</link>
       <pubDate>Mon, 22 Oct 2018 22:36:01 +0800</pubDate>
@@ -48,11 +57,29 @@
     </item>
     
     <item>
+      <title>Php</title>
+      <link>/categories/php/</link>
+      <pubDate>Mon, 10 Dec 2018 15:37:11 +0800</pubDate>
+      
+      <guid>/categories/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>/categories/python/</link>
       <pubDate>Tue, 24 Apr 2018 23:10:01 +0800</pubDate>
       
       <guid>/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tranquilpeak</title>
+      <link>/categories/tranquilpeak/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/tranquilpeak/</guid>
       <description></description>
     </item>
     

@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/12/phar/</loc>
+    <lastmod>2018-12-10T15:37:11+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/11/insert-into/</loc>
     <lastmod>2018-11-18T17:00:04+08:00</lastmod>
   </url>
@@ -53,6 +58,16 @@
   </url>
   
   <url>
+    <loc>/2015/05/elements-showcase/</loc>
+    <lastmod>2015-05-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2015/03/highlighted-code-showcase/</loc>
+    <lastmod>2015-03-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/algorithm/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
     <priority>0</priority>
@@ -65,7 +80,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-11-18T17:00:04+08:00</lastmod>
+    <lastmod>2018-12-10T15:37:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -88,8 +103,38 @@
   </url>
   
   <url>
+    <loc>/categories/features/</loc>
+    <lastmod>2015-05-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/github-theme/</loc>
+    <lastmod>2015-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/highlight-code/</loc>
+    <lastmod>2015-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/html-elements/</loc>
+    <lastmod>2015-05-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/huffman/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/markdown/</loc>
+    <lastmod>2015-05-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -106,8 +151,14 @@
   </url>
   
   <url>
+    <loc>/categories/php/</loc>
+    <lastmod>2018-12-10T15:37:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
-    <lastmod>2018-11-18T17:00:04+08:00</lastmod>
+    <lastmod>2018-12-10T15:37:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -144,6 +195,18 @@
   <url>
     <loc>/tags/</loc>
     <lastmod>2018-04-24T23:10:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/test/</loc>
+    <lastmod>2015-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/tranquilpeak/</loc>
+    <lastmod>2015-05-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

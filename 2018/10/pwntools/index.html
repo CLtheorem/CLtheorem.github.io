@@ -277,9 +277,15 @@ p.interactive()</code></pre>
 <pre><code>0x01 用法积累
 
 ssh的使用
-    s=ssh(host=&quot;hostname&quot;,user=&quot;username&quot;,password=&quot;pass&quot;)  # 建立ssh链接
+    s=ssh(host=&quot;hostname&quot;,user=&quot;username&quot;,password=&quot;pass&quot;, port=2222)  # 建立ssh链接，默认端口可省略port
     s.set_working_directory(&quot;/&quot;)  # 设置在目标主机上的工作目录
+    # s.ls()  # 执行ls命令
+    # s.pwd()  # 执行pwd命令
+    # s.file('filename')  # 执行 file filename 命令
+    # s.interactive()  # 这样会保持ssh连接，效果和直接ssh连接一样。
     p = s.process(&quot;./vuln&quot;)  # 注意这里要使用s.process()来加载目标主机上的文件
+
+
 
 p.recvuntil(&quot;mesg&quot;)和p.sendline(&quot;reply&quot;)可以简写为p.sendlineafter(&quot;mesg&quot;, &quot;reply&quot;)
 </code></pre>
@@ -474,6 +480,25 @@ p.recvuntil(&quot;mesg&quot;)和p.sendline(&quot;reply&quot;)可以简写为p.se
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/phar/">
+                <h3 class="media-heading">Phar</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>php中phar文件反序列化问题。
+    
+    <!-- toc --></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="/2018/11/insert-into/">
                 <h3 class="media-heading">Insert into</h3>
               </a>
@@ -631,30 +656,6 @@ p.recvuntil(&quot;mesg&quot;)和p.sendline(&quot;reply&quot;)可以简写为p.se
             <hr>
           </div>
         
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/2018/04/huffmancode/">
-                <h3 class="media-heading">HuffmanCode</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Apr 4, 2018
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>赫夫曼编码</p>
-
-<pre><code>对一个字符串进行二进制编码，采用赫夫曼编码原则，可获得总长度最短的编码方案。
-
-知识点：最优二叉树（赫夫曼树）
-</code></pre>
-
-<p></p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
       </div>
     </div>
     <div class="modal-footer">
@@ -662,7 +663,7 @@ p.recvuntil(&quot;mesg&quot;)和p.sendline(&quot;reply&quot;)可以简写为p.se
          data-message-zero=""
          data-message-one=""
          data-message-other="">
-         10 posts found
+         13 posts found
       </p>
     </div>
   </div>

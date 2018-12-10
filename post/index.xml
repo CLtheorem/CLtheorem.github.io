@@ -6,10 +6,21 @@
     <description>Recent content in Posts on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Nov 2018 17:00:04 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Dec 2018 15:37:11 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Phar</title>
+      <link>/2018/12/phar/</link>
+      <pubDate>Mon, 10 Dec 2018 15:37:11 +0800</pubDate>
+      
+      <guid>/2018/12/phar/</guid>
+      <description>&lt;p&gt;php中phar文件反序列化问题。
+    
+    &lt;!-- toc --&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Insert into</title>
@@ -113,6 +124,26 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Elements showcase</title>
+      <link>/2015/05/elements-showcase/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/05/elements-showcase/</guid>
+      <description>&lt;p&gt;Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&amp;rsquo;s simple and elegant.
+&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>highlighted code showcase</title>
+      <link>/2015/03/highlighted-code-showcase/</link>
+      <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/2015/03/highlighted-code-showcase/</guid>
+      <description>&lt;p&gt;Tranquilpeak Hugo theme have its own theme to highlight source code. It&amp;rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
+&lt;/p&gt;</description>
     </item>
     
   </channel>

