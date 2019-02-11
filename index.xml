@@ -6,10 +6,42 @@
     <description>Recent content on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Dec 2018 15:37:11 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 31 Dec 2018 11:07:40 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ffmpeg</title>
+      <link>/2018/12/ffmpeg/</link>
+      <pubDate>Mon, 31 Dec 2018 11:07:40 +0800</pubDate>
+      
+      <guid>/2018/12/ffmpeg/</guid>
+      <description>&lt;p&gt;一些ffmpeg的常用指令。&lt;a href=&#34;https://ffmpeg.org/ffmpeg.html&#34;&gt;ffmpeg document&lt;/a&gt; and &lt;a href=&#34;https://ffmpeg.org/ffmpeg-filters.html&#34;&gt;ffmpeg filters Document&lt;/a&gt;。
+    
+    &lt;!--toc--&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Centos7 firewalld 安全配置</title>
+      <link>/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 29 Dec 2018 10:24:23 +0800</pubDate>
+      
+      <guid>/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;前段时间买了个vps，起初为了方便直接关了防火墙，今天看了一下Apache日志，发现好多恶意扫描，ssh方面也有七千多次失败的登陆记录。遂打算研究一下Centos的firewalld，确保vps的安全。
+
+&lt;!--toc--&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>百越杯-2018线下赛总结</title>
+      <link>/2018/12/%E7%99%BE%E8%B6%8A%E6%9D%AF-2018%E7%BA%BF%E4%B8%8B%E8%B5%9B%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 16 Dec 2018 20:20:07 +0800</pubDate>
+      
+      <guid>/2018/12/%E7%99%BE%E8%B6%8A%E6%9D%AF-2018%E7%BA%BF%E4%B8%8B%E8%B5%9B%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;关于“百越杯-2018”决赛中awd模式的一些体会。
+    &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Phar</title>
@@ -124,26 +156,6 @@
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Elements showcase</title>
-      <link>/2015/05/elements-showcase/</link>
-      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/2015/05/elements-showcase/</guid>
-      <description>&lt;p&gt;Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&amp;rsquo;s simple and elegant.
-&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>highlighted code showcase</title>
-      <link>/2015/03/highlighted-code-showcase/</link>
-      <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/2015/03/highlighted-code-showcase/</guid>
-      <description>&lt;p&gt;Tranquilpeak Hugo theme have its own theme to highlight source code. It&amp;rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
-&lt;/p&gt;</description>
     </item>
     
   </channel>

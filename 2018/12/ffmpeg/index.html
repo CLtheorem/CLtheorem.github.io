@@ -1,0 +1,819 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>ffmpeg</title>
+    <meta name="author" content="CLtheorem">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="一些ffmpeg的常用指令。ffmpeg document and ffmpeg filters Document。
+    
+    ">
+    <meta property="og:description" content="一些ffmpeg的常用指令。ffmpeg document and ffmpeg filters Document。
+    
+    ">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="ffmpeg">
+    <meta property="og:url" content="/2018/12/ffmpeg/">
+    <meta property="og:site_name" content="CLtheorem">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CLtheorem">
+    <meta name="twitter:description" content="一些ffmpeg的常用指令。ffmpeg document and ffmpeg filters Document。
+    
+    ">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">CLtheorem</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">CLtheorem</h4>
+        
+          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，致知无央</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/CLtheorem">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      ffmpeg
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-12-31T11:07:40&#43;08:00">
+        
+  十二月 31, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/tools">tools</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">	
+              <p>一些ffmpeg的常用指令。<a href="https://ffmpeg.org/ffmpeg.html">ffmpeg document</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html">ffmpeg filters Document</a>。
+    
+    <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#格式转换">格式转换</a></li>
+<li><a href="#视频裁剪">视频裁剪</a></li>
+<li><a href="#视频缩放">视频缩放</a></li>
+<li><a href="#视频旋转">视频旋转</a></li>
+<li><a href="#音量调整">音量调整</a></li>
+<li><a href="#声道调整">声道调整</a></li>
+<li><a href="#others">others</a></li>
+</ul>
+</nav></p>
+
+<h1 id="格式转换">格式转换</h1>
+
+<pre><code>ffmpeg -i input.avi output.mp4  # 把avi格式视频转换为mp4，-i 指定输入
+ffmpeg -i input.ava output.mp3  # 音频格式转换
+</code></pre>
+
+<h1 id="视频裁剪">视频裁剪</h1>
+
+<p>注意这里的意思是画面大小的剪裁，不是时间轴，时间轴的剪裁在后文。</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;crop=w=1920:h=1080:x=0:y=0&quot; outputFile
+</code></pre>
+
+<ul>
+<li>-filter:v 表示在视频通道使用过滤器，v即video channel</li>
+<li>crop 即剪裁，该过滤器最多指定4个参数，其中w和h分别表示输出的宽和长；x和y指定裁剪的位置，x=0:y=0即表示从视频左上角开始裁剪，不指定xy时默认以原视频中心点为中心进行裁剪。</li>
+</ul>
+
+<p>按比例剪裁</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;crop=w=1/2*in_w:h=1/2*in_h&quot; outputFile
+</code></pre>
+
+<ul>
+<li>实现的功能是长宽剪裁为原来的一半。</li>
+<li>in_w 即 input width，in_h同理。</li>
+</ul>
+
+<h1 id="视频缩放">视频缩放</h1>
+
+<p>用法与剪裁类似，不同的是这次使用scale过滤器。</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;scale=w=1920:h=1080&quot; outputFile
+</code></pre>
+
+<p>按比例缩放：</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;scale=w=1/2*in_w:h=1/2*in_h&quot; outputFile
+</code></pre>
+
+<p>定比缩放：</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;scale=w=1920:h=-1&quot; outputFile
+</code></pre>
+
+<ul>
+<li>把w和h其中一个置为-1，如上h=-1，则h的值随w按原视频长宽比例变化。</li>
+</ul>
+
+<h1 id="视频旋转">视频旋转</h1>
+
+<p>使用过滤器rotate。</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;rotate=90\*PI/180&quot; outputFile
+</code></pre>
+
+<ul>
+<li>rotate的值为旋转度数，需要弧度值，我们可以通过乘PI/180的方式来赋值，如上表示顺时针旋转90度。</li>
+</ul>
+
+<p>让视频随时间轴进行旋转</p>
+
+<pre><code>ffmpeg -i inputFile -filter:v &quot;rotate=2*PI*t/10&quot; outputFile 
+</code></pre>
+
+<ul>
+<li>旋转周期为10s。也可以为其指定初相角，rotate=PI/2+2*PI*t/10</li>
+</ul>
+
+<h1 id="音量调整">音量调整</h1>
+
+<pre><code>ffmpeg -i inputFile -filter:a &quot;volume=2&quot; outputFile 
+</code></pre>
+
+<ul>
+<li>-filter:a 表示在音频通道上使用过滤器，参数值 a 即 audio channel</li>
+<li>volume=2 表示调用音量过滤器并设置输出音量为原音量的2倍</li>
+</ul>
+
+<p>示例：</p>
+
+<pre><code>ffmpeg -i input.wav -filter:a &quot;volume=3&quot; output.mp3  # 音量放大三倍，并转化格式为MP3
+ffmpeg -i input.wav -filter:a &quot;volume=0.5&quot; output.mp3  # 音量减小为原来的1/2
+</code></pre>
+
+<h1 id="声道调整">声道调整</h1>
+
+<pre><code>ffmpeg -i inputFile -filter:a &quot;channelmap=0-1|1-0&quot; outputFile
+</code></pre>
+
+<ul>
+<li>channelmap即声道映射，0表示左声道，1表示右声道。</li>
+<li>channelmap=0-1|1-0 表示把左声道映射到右声道，右声道映射到左声道，即左右声道互换。</li>
+</ul>
+
+<p>以上内容来自<a href="https://www.youtube.com/watch?v=MPV7JXTWPWI">一个ffmpeg入门教程</a>，可以看出，其最核心的莫过于各种过滤器的使用，这是ffmpeg的强大之处，也是ffmpeg各种用法的基础思路。以下是杂记。</p>
+
+<h1 id="others">others</h1>
+
+<ol>
+<li><p>拼接视频</p>
+
+<pre><code>ffmpeg -f concat -i fileList.txt -c copy outputFile
+</code></pre>
+
+<ul>
+<li><p><code>fileList.txt</code>中写入要拼接的文件，格式如下：</p>
+
+<pre><code>file 'video1.wmv'
+file 'video2.wmv'
+</code></pre></li>
+</ul></li>
+
+<li><p>时间轴剪裁</p>
+
+<pre><code>ffmpeg -i inputFile -ss start -t duration outputFile
+</code></pre>
+
+<ul>
+<li><code>start</code>是开始时间，格式为<code>00:10:10</code>或者简单的秒数<code>610</code></li>
+<li><code>duration</code>是持续时间，格式同上</li>
+</ul></li>
+
+<li><p>加速</p>
+
+<p><a href="https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video">ffmpeg wiki</a></p></li>
+
+<li><p>提取音频</p>
+
+<p>ffmpeg -i video_name.mp4 -vn -y -acodec copy music_name.aac 从视频中提取音频</p></li>
+</ol>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/ffmpeg/">ffmpeg</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/" data-tooltip="Centos7 firewalld 安全配置">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 CLtheorem. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/" data-tooltip="Centos7 firewalld 安全配置">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">CLtheorem</h4>
+    
+      <div id="about-card-bio">自强不息，止于至善；敏而好学，致知无央</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/ffmpeg/">
+                <h3 class="media-heading">ffmpeg</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一些ffmpeg的常用指令。<a href="https://ffmpeg.org/ffmpeg.html">ffmpeg document</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html">ffmpeg filters Document</a>。
+    
+    <!--toc--></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/">
+                <h3 class="media-heading">Centos7 firewalld 安全配置</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>前段时间买了个vps，起初为了方便直接关了防火墙，今天看了一下Apache日志，发现好多恶意扫描，ssh方面也有七千多次失败的登陆记录。遂打算研究一下Centos的firewalld，确保vps的安全。
+
+<!--toc--></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/%E7%99%BE%E8%B6%8A%E6%9D%AF-2018%E7%BA%BF%E4%B8%8B%E8%B5%9B%E6%80%BB%E7%BB%93/">
+                <h3 class="media-heading">百越杯-2018线下赛总结</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>关于“百越杯-2018”决赛中awd模式的一些体会。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/phar/">
+                <h3 class="media-heading">Phar</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>php中phar文件反序列化问题。
+    
+    <!-- toc --></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/insert-into/">
+                <h3 class="media-heading">Insert into</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>INSERT INTO函数基于时间的盲注
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/regular_expression/">
+                <h3 class="media-heading">Regular_expression</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/hitcon2018-lostkey/">
+                <h3 class="media-heading">Hitcon2018-Lostkey</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Hitcon2018中lost key的wp。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
+                <h3 class="media-heading">Base64隐写</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/pwntools/">
+                <h3 class="media-heading">Pwntools</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>官方文档：<a href="http://docs.pwntools.com">http://docs.pwntools.com</a>
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/09/writeup-simple-injection/">
+                <h3 class="media-heading">Writeup Simple Injection</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Jarvis OJ中web题——Simple Injection
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         14 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/54547023_p10.png');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/12\/ffmpeg\/';
+          
+            this.page.identifier = '\/2018\/12\/ffmpeg\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

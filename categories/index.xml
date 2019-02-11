@@ -30,15 +30,6 @@
     </item>
     
     <item>
-      <title>Features</title>
-      <link>/categories/features/</link>
-      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/features/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Misc</title>
       <link>/categories/misc/</link>
       <pubDate>Mon, 22 Oct 2018 22:36:01 +0800</pubDate>
@@ -75,18 +66,27 @@
     </item>
     
     <item>
-      <title>Tranquilpeak</title>
-      <link>/categories/tranquilpeak/</link>
-      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      <title>Security</title>
+      <link>/categories/security/</link>
+      <pubDate>Sat, 29 Dec 2018 10:24:23 +0800</pubDate>
       
-      <guid>/categories/tranquilpeak/</guid>
+      <guid>/categories/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>/categories/tools/</link>
+      <pubDate>Mon, 31 Dec 2018 11:07:40 +0800</pubDate>
+      
+      <guid>/categories/tools/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
       <link>/categories/web/</link>
-      <pubDate>Sun, 18 Nov 2018 17:00:04 +0800</pubDate>
+      <pubDate>Sun, 16 Dec 2018 20:20:07 +0800</pubDate>
       
       <guid>/categories/web/</guid>
       <description></description>

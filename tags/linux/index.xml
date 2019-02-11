@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on CLtheorem</title>
+    <link>/tags/linux/</link>
+    <description>Recent content in Linux on CLtheorem</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Dec 2018 10:24:23 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos7 firewalld 安全配置</title>
+      <link>/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 29 Dec 2018 10:24:23 +0800</pubDate>
+      
+      <guid>/2018/12/centos7-firewalld-%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;前段时间买了个vps，起初为了方便直接关了防火墙，今天看了一下Apache日志，发现好多恶意扫描，ssh方面也有七千多次失败的登陆记录。遂打算研究一下Centos的firewalld，确保vps的安全。
+
+&lt;!--toc--&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
