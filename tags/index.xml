@@ -39,15 +39,6 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>/tags/linux/</link>
-      <pubDate>Sat, 29 Dec 2018 10:24:23 +0800</pubDate>
-      
-      <guid>/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Pwntools</title>
       <link>/tags/pwntools/</link>
       <pubDate>Sun, 14 Oct 2018 23:33:19 +0800</pubDate>
