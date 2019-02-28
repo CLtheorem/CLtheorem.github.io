@@ -6,10 +6,20 @@
     <description>Recent content on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Dec 2018 11:07:40 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 28 Feb 2019 19:59:30 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>arpings</title>
+      <link>/2019/02/arpings/</link>
+      <pubDate>Thu, 28 Feb 2019 19:59:30 +0800</pubDate>
+      
+      <guid>/2019/02/arpings/</guid>
+      <description>&lt;p&gt;一个利用arping命令，批量扫描局域网内存活主机的小脚本。
+    &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>ffmpeg</title>

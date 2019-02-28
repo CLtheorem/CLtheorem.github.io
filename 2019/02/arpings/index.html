@@ -1,5 +1,9 @@
 
 
+  
+    
+  
+
 
   
 
@@ -18,25 +22,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
-    <title>Sql Injection</title>
+    <title>arpings</title>
     <meta name="author" content="CLtheorem">
     <meta name="keywords" content="">
 
     <link rel="icon" href="/favicon.png">
     
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/tags/sql-injection/index.xml">
-    
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="一个利用arping命令，批量扫描局域网内存活主机的小脚本。
+    ">
+    <meta property="og:description" content="一个利用arping命令，批量扫描局域网内存活主机的小脚本。
+    ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Sql Injection">
-    <meta property="og:url" content="/tags/sql-injection/">
+    <meta property="og:title" content="arpings">
+    <meta property="og:url" content="/2019/02/arpings/">
     <meta property="og:site_name" content="CLtheorem">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="CLtheorem">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="一个利用arping命令，批量扫描局域网内存活主机的小脚本。
+    ">
     
     
 
@@ -70,8 +75,9 @@
   </head>
 
   <body>
+
     <div id="blog">
-      <header id="header" data-behavior="1">
+      <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="/">CLtheorem</a>
@@ -91,7 +97,7 @@
   
 </header>
 
-      <nav id="sidebar" data-behavior="1">
+      <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
@@ -180,44 +186,26 @@
 </nav>
 
       
-        
 
-      
-      <div id="main" data-behavior="1"
+      <div id="main" data-behavior="4"
         class="
                hasCoverMetaIn
                ">
-        
-          <section class="postShorten-group main-content-wrap">
-            
-            
-              
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
   
-    
-      
-        
-      
-    
+    <h1 class="post-title" itemprop="headline">
+      arpings
+    </h1>
   
-
-
   
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/2018/11/insert-into/">
-          Insert into
-        </a>
-      </h1>
-      
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-11-18T17:00:04&#43;08:00">
+      <time itemprop="datePublished" datetime="2019-02-28T19:59:30&#43;08:00">
         
-  十一月 18, 2018
+  二月 28, 2019
 
       </time>
     
@@ -226,140 +214,155 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="/categories/web">Web</a>
+      <a class="category-link" href="/categories/tools">tools</a>
     
   
 
   </div>
 
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>INSERT INTO函数基于时间的盲注
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">	
+              <p>一个利用arping命令，批量扫描局域网内存活主机的小脚本。
     </p>
-      <p>
-        <a href="/2018/11/insert-into/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
+
+<p>arping命令是linux下一个很好用的局域网主机探测工具，利用arp协议进行探测，相对于ping命令，其明显的优势便是速度快，缺点是仅能进行局域网内探测。但arping命令本身不支持批量探测，所以写了个批量扫描脚本。</p>
+
+<pre><code>Usage: ./arpings interface
+Avaliable interface:
+	br-133d1db9f98a br-1e4cf58baa3e docker0 eth0 lo  # 脚本会检测并显示本机可用的网卡接口
+For example, scanning at eth0 interface: ./arpings eth0
+
+</code></pre>
+
+<p>执行脚本后，会显示扫描到的存活主机ip。
+
   
-</article>
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight shell language-shell">
+  <figcaption>
+    
+      <span>arpings.sh</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-shell"><code class="shell">#!/bin/bash
+interfaces=($(ifconfig|grep &#39;: &#39;|awk -F &#39;:&#39; &#39;{print $1}&#39;))  # get avaliable interface
+if [ $# != 1 ]||[ $1 = &#39;-h&#39; ]||[ $1 = &#34;--help&#34; ]  # no interface selected
+then
+	echo &#34;Usage: ./arpings interface&#34;
+	echo &#34;Avaliable interface:&#34;
+	echo &#34;	${interfaces[@]}&#34;
+	echo &#34;For example, scanning at eth0 interface: ./arpings eth0&#34;
+	exit	
+fi
+
+for interface in ${interfaces[@]}
+do
+	if [ $interface = $1 ]
+	then
+		ip=$(ifconfig|grep -A 1 $1|awk -F &#39;inet&#39; &#39;{print $2}&#39;|awk &#39;{print $1}&#39;)
+		for i in $(seq 1 254)
+		do
+			if [ $(arping -I $1 -c 1 ${ip%.*}.$i|grep &#39;Received&#39;|awk &#39;{print $2}&#39;) = &#39;1&#39; ]  # output survival host
+			then
+				echo ${ip%.*}.$i  
+			fi
+		done
+		exit
+	fi
+done
+
+echo &#34;Wrong interface!&#34;
+echo &#34;Avaliable interface:&#34;
+echo &#34;	${interfaces[@]}&#34;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/ffmpeg/" data-tooltip="ffmpeg">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
 
             
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/2018/09/writeup-simple-injection/">
-          Writeup Simple Injection
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-09-28T21:09:08&#43;08:00">
-        
-  九月 28, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="/categories/web">Web</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>Jarvis OJ中web题——Simple Injection
-    </p>
-      <p>
-        <a href="/2018/09/writeup-simple-injection/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
-            
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
               
-  
-    
-      
-        
-      
-    
-  
-
-
-  
-
-<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
-  <div class="postShorten-wrap">
-    
-    <div class="postShorten-header">
-      <h1 class="postShorten-title" itemprop="headline">
-        <a class="link-unstyled" href="/2018/04/basic-sql-injection-1/">
-          Basic Sql Injection 1
-        </a>
-      </h1>
-      
-  <div class="postShorten-meta post-meta">
-    
-      <time itemprop="datePublished" datetime="2018-04-25T13:58:41&#43;08:00">
-        
-  四月 25, 2018
-
-      </time>
-    
-    
-  
-  
-    <span>发布在</span>
-    
-      <a class="category-link" href="/categories/web">Web</a>
-    
-  
-
-  </div>
-
-    </div>
-    <div class="postShorten-excerpt" itemprop="articleBody">
-      <p>基础的MySQL(MariaDB)数据库注入知识（一）
-    </p>
-      <p>
-        <a href="/2018/04/basic-sql-injection-1/" class="postShorten-excerpt_link link">阅读全文</a>
-        
-      </p>
-    </div>
-  </div>
-  
-</article>
-
             
-            
-
-          </section>
-        
+          </div>
+        </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
     &copy; 2019 CLtheorem. All Rights Reserved
@@ -367,6 +370,66 @@
 </footer>
 
       </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/12/ffmpeg/" data-tooltip="ffmpeg">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
     </div>
     
     <div id="about">
@@ -634,6 +697,32 @@ $(document).ready(function() {
 });
 </script>
 
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2019\/02\/arpings\/';
+          
+            this.page.identifier = '\/2019\/02\/arpings\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
 
 
 
