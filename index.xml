@@ -6,10 +6,20 @@
     <description>Recent content on CLtheorem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Mar 2019 10:55:53 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 10:10:32 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Billu_b0x</title>
+      <link>/2019/12/billu_b0x/</link>
+      <pubDate>Thu, 19 Dec 2019 10:10:32 +0800</pubDate>
+      
+      <guid>/2019/12/billu_b0x/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.vulnhub.com/&#34;&gt;Vulnhub&lt;/a&gt;上的一个靶机&lt;a href=&#34;https://www.vulnhub.com/entry/billu-b0x,188/&#34;&gt;billu: b0x&lt;/a&gt;的walkthrough。
+    &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Bugku Login</title>
@@ -119,16 +129,6 @@
       
       <guid>/2018/09/%E7%94%A8photoshop%E8%A7%A3%E5%86%B3%E7%9A%84%E4%B8%A4%E9%81%93misc/</guid>
       <description>&lt;p&gt;这是IceCTF2018中的两道misc，感觉用Photoshop处理起来很好玩。
-    &lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Basic XSS</title>
-      <link>/2018/08/basic-xss/</link>
-      <pubDate>Thu, 23 Aug 2018 17:23:43 +0800</pubDate>
-      
-      <guid>/2018/08/basic-xss/</guid>
-      <description>&lt;p&gt;XSS Challenges Stage(&lt;a href=&#34;http://xss-quiz.int21h.jp&#34;&gt;http://xss-quiz.int21h.jp&lt;/a&gt;) 上的练习题解。
     &lt;/p&gt;</description>
     </item>
     

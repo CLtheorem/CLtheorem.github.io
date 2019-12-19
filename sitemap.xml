@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2019/12/billu_b0x/</loc>
+    <lastmod>2019-12-19T10:10:32+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2019/03/bugku-login/</loc>
     <lastmod>2019-03-03T10:55:53+08:00</lastmod>
   </url>
@@ -58,11 +63,6 @@
   </url>
   
   <url>
-    <loc>/2018/08/basic-xss/</loc>
-    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/2018/04/basic-sql-injection-1/</loc>
     <lastmod>2018-04-25T13:58:41+08:00</lastmod>
   </url>
@@ -85,7 +85,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2019-03-03T10:55:53+08:00</lastmod>
+    <lastmod>2019-12-19T10:10:32+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -132,6 +132,12 @@
   </url>
   
   <url>
+    <loc>/categories/penetration/</loc>
+    <lastmod>2019-12-19T10:10:32+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/php/</loc>
     <lastmod>2018-12-10T15:37:11+08:00</lastmod>
     <priority>0</priority>
@@ -139,7 +145,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-03-03T10:55:53+08:00</lastmod>
+    <lastmod>2019-12-19T10:10:32+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -186,14 +192,14 @@
   </url>
   
   <url>
-    <loc>/categories/web/</loc>
-    <lastmod>2019-03-03T10:55:53+08:00</lastmod>
+    <loc>/tags/vulnhub/</loc>
+    <lastmod>2019-12-19T10:10:32+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/xss/</loc>
-    <lastmod>2018-08-23T17:23:43+08:00</lastmod>
+    <loc>/categories/web/</loc>
+    <lastmod>2019-03-03T10:55:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   

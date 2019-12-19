@@ -43,16 +43,6 @@
     </item>
     
     <item>
-      <title>Basic XSS</title>
-      <link>/2018/08/basic-xss/</link>
-      <pubDate>Thu, 23 Aug 2018 17:23:43 +0800</pubDate>
-      
-      <guid>/2018/08/basic-xss/</guid>
-      <description>&lt;p&gt;XSS Challenges Stage(&lt;a href=&#34;http://xss-quiz.int21h.jp&#34;&gt;http://xss-quiz.int21h.jp&lt;/a&gt;) 上的练习题解。
-    &lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Basic Sql Injection 1</title>
       <link>/2018/04/basic-sql-injection-1/</link>
       <pubDate>Wed, 25 Apr 2018 13:58:41 +0800</pubDate>
